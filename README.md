@@ -24,6 +24,15 @@ Olhar para uma imensa massa de artigos científicos, todos dispostos em JATS, re
 
 Há naturalmente um funil de busca com criteriosa seleção, que envolve o trabalho e discussão entre todos, da *curadoria* e do grupo de *experts*. A exigência que prevalece é que sejam sempre realizadas ações de forma não tendenciosa.
 
-## Relatórios
+### Etapas
+
+1. Formação e homologação da curadoria (aprovação de alvo e dos compromissos da equipe);
+2. Planejamento da campanha, e alinhamentos com a equipe de experts (aprovação de calendários e responsabilidades);
+3. Experimentos-piloto e provas de conceito;
+4. Realização da campanha;
+5. Revisão final;
+6. Publicação de relatórios.
+
+### Relatórios
 
 Os resultados das campanhas de observação ficam registrados em relatórios... Por hora não temos nenhum para mostrar, aguarde!
