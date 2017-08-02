@@ -1,7 +1,10 @@
 <?php
 /**
- *  Faz busca por artigos em listas de referências de fonte HTML dada por DOI ou save-as HTML do artigo. 
- *  Entrar com uma sequencia de DOIs. Saida = planilha de <doiCitador,tipoCitado,IDcitado>
+ * Gambiarra para extração automática de dados de artigos que não se encontram em JATS mas estão online em HTML.
+ * Vale apenas para revistas populares, como Science, Nature, etc.
+ *
+ * Faz busca por artigos em listas de referências de fonte HTML dada por DOI ou save-as HTML do artigo. 
+ * Entrar com uma sequencia de DOIs. Saida = planilha de <doiCitador,tipoCitado,IDcitado>
  *   depois PostgreSQL https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=3888466
  */
 
