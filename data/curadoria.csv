@@ -1,4 +1,0 @@
-id,nome,titulo,alvo_tema,alvo_repos,data_inicio
-1,corpusFioCruz,Revistas FioCruz no SciELO,"Formação e avaliação de um corpus de textos para o Observatório JATS","SciELO-BR",2017-07-01
-2,rastreabilidade,Rastreabilidade das referências nas revistas FioCruz de uma amostragem,"Obtenção automática do DOI ou link oficial dos artigos","SciELO-BR",2017-08-01
-3,ocTeseZika,OpenCoherence de uma tese de doutorado sobre o Zika,alvo_tema,alvo_repos,2017-08-01
