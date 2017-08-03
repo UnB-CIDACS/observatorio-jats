@@ -1,4 +1,4 @@
-# Script shell com comandos para renomear ISSNs erraoddos. 
+# Script shell com comandos para renomear ISSNs erraoddos.
 # Gerado por:   ls | php conv.php > convPerigo.sh
 #
 <?php
@@ -13,3 +13,4 @@ foreach (file('php://stdin') as $line) if (preg_match('/([0-9][0-9\-Xx]*)/s',$li
 }
 echo "\n#  final, $ndiff (de $n) dos códigos ISSN não eram canônicos, devem ser convertidos para ISSN-L\n";
 
+1678-8060
