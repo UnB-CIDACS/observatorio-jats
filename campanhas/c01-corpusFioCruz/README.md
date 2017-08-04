@@ -28,6 +28,19 @@ Os periódicos FioCruz formam um corpus consistente, cobrindo diversos aspectos 
 
 Foram obtidos do acervo SciELO os periódicos de ISSN-L 0074-0276, 0102-311X,  e 1678-1007.
 
+## Metodologia
+
+### Testes e calibrações
+
+Verificação através de compração com dados do SciELO, para homologar os arquivos JATS em uso.
+
+...
+
+### Questionamentos
+
+... 
+
+
 ## Endossos e revisores desta página
 
 Além dos [revisores listados no histórico desta página](https://github.com/okfn-brasil/queriDO/commits/master/report/curadoria001.md), curdores que endossam o seu conteúdo:
