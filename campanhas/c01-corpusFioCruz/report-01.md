@@ -13,7 +13,7 @@ Maiores detalhes no [scieloPages-reprodux.sql](src/scieloPages-reprodux.sql).
 ## Escopo do perfil
 Como o SciELO não sumariza online a informação relativa à quantidade de artigos e à disponibilidade dos mesmos em JATS, o relatório de perfil não tem referência para ser validado. Algumas amostragens foram realizadas conferindo fascículos online manualmente.
 
-O resultado do perfil foi registrado na planilha [perfil.csv](data/perfil.csv) cujas informações contemplam também o escopo da calibração.
+O resultado do perfil foi registrado na planilha [std_issue_profile.csv](data/std_issue_profile.csv) cujas informações contemplam também o escopo da calibração.
 
 ## Revista 0074-0276
 

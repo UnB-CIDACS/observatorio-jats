@@ -6,9 +6,9 @@ São ~4 milhões de artigos JATS no [PubMed Central](https://www.ncbi.nlm.nih.go
 
 ... É tanto JATS, e ninguém olha para eles como "mina de ouro" de conhecimento estruturado, ao menos no Brasil: a iniciativa do **Observatório JATS** nasceu para isso, para explorarmos mais essa imensa base de dados científicos, certificados, bem organizados, com estrutura e semântica bem definidas.
 
-É um *observatório* de fato, pois há um "universo" que não damos conta de conhecer, dada a quantidade imensa de arquivos JATS e de detalhes contidos neles; mas podemos escolher um "alvo", e nos pormos a observar o que existe naquela região do "espaço JATS"... E para observar precisamos de ferramentas e pessoas operando essas ferramentas, constituindo assim um observatório. 
+É um *observatório* de fato, pois há um "universo" que não damos conta de conhecer, dada a quantidade imensa de arquivos JATS e de detalhes contidos neles; mas podemos escolher um "alvo", e nos pormos a observar o que existe naquela região do "espaço JATS"... E para observar precisamos de ferramentas e pessoas operando essas ferramentas, constituindo assim um observatório.
 
-Os alvos são assuntos ou perguntas viáveis do ponto de vista estatístico. Assim como num grande observatório astronômico, mantido por uma comunidade, o sucesso de suas observações depende do sucesso e alinhamento entre duas sub-comunidades: o grupo que formula as perguntas e dá significado às observações dentro de suas teorias, e o grupo que põe a mão na massa, sabe operar o equipamento, e realiza ou auxilia  nas *campanhas de observação*.
+Os alvos são assuntos ou perguntas viáveis do ponto de vista estatístico. Assim como num grande observatório astronômico, mantido por uma comunidade, o sucesso de suas observações depende do sucesso e alinhamento entre duas sub-comunidades: o grupo que formula as perguntas e dá significado às observações dentro de suas teorias, e o grupo que põe a mão na massa, sabe operar o equipamento, e realiza ou auxilia  nas *campanhas observacionais*.
 
 Junte-se ao  Observatório JATS: juntando-se a uma *curadoria*, o grupo que faz perguntas dentro do seu escopo de interesse; ou juntando-se aos *experts* em buscas, estatísticas e JATS, que operam o observatório.
 
@@ -20,7 +20,7 @@ A **comunidade mantenedora deste projeto** é formada por dois grupos, a exemplo
 
 * **experts**: entusiastas da Ciência Aberta, Estatística, programação, web semântica ou [*data scraping*](https://en.wikipedia.org/wiki/Data_scraping), ajudando  a *curadoria* a achar a "agulha no palheiro", e preparar milhares de *artigos JATS*  para constituir um [*corpus* textual](https://en.wikipedia.org/wiki/Corpus_linguistics) de análise: bem estruturado e suficientemente completo para cada *alvo* definido pelas *curadoriais*.  <br/>PS: um _expert_ pode também ser membro de uma _curadoria_.
 
-## Campanhas de observação
+## Campanhas observacionais
 
 Olhar para uma imensa massa de artigos científicos, todos dispostos em JATS, requer alguns cuidados e metodologia. Nosso principal referencial metodológico são as [revisões sistemáticas](https://en.wikipedia.org/wiki/Systematic_review), a análise estatística, e as técnicas e tecnologias de bancos de dados (incluindo desde o [SQL](https://en.wikipedia.org/wiki/SQL) à [Web Semântica](https://en.wikipedia.org/wiki/Semantic_Web)).
 
@@ -29,7 +29,7 @@ Há naturalmente um funil de busca com criteriosa seleção, que envolve o traba
 ### Etapas
 
 1. Formação e homologação da curadoria (aprovação de alvo e dos compromissos da equipe);
-2. Planejamento da campanha, e alinhamentos com a equipe de experts (aprovação de calendários e responsabilidades);
+2. Planejamento da campanha observacional, e alinhamentos com a equipe de experts (aprovação de calendários e responsabilidades);
 3. Experimentos-piloto e provas de conceito;
 4. Realização da campanha;
 5. Revisão final;
@@ -37,7 +37,7 @@ Há naturalmente um funil de busca com criteriosa seleção, que envolve o traba
 
 ### Relatórios
 
-Os resultados das campanhas de observação ficam registrados em relatórios... Por hora não temos nenhum para mostrar, aguarde!
+Os resultados das campanhas observacionais ficam registrados em relatórios... Por hora não temos nenhum para mostrar, aguarde!
 
 ## Organizações que apoiam este projeto
 

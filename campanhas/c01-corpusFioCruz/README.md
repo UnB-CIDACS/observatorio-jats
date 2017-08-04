@@ -7,7 +7,7 @@ endorsed_status: no endorsement
 layout: page
 ---
 
-# Campanha de observação das Revistas FioCruz
+# Campanha observacional das Revistas FioCruz
 
 **Objetivo**: Formação e avaliação de um corpus de textos de [periódicos FioCruz](http://periodicos.fiocruz.br) para o Observatório JATS, com base nos conteúdos JATS depositados no SciELO. Avaliação estatística do perfil das matérias publicadas e da qualidade da marcação JATS realizada.
 

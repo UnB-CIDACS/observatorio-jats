@@ -1,7 +1,9 @@
 
 
 CREATE VIEW report.c01_issues_listpervol AS
-  SELECT issn, year, volume, array_to_string(array_agg(issue ORDER BY lpad0(issue)),'; ') as issues
+  SELECT issn, year, volume,
+    array_to_string(array_agg(issue ORDER BY lpad0(issue)),'; ') as issues_txt,
+    to_jsonb( array_agg(issue ORDER BY lpad0(issue)) ) as issues_json
   FROM article_issue_count
   GROUP BY 1,2,3
   ORDER BY 1, 2 DESC, 3 DESC
@@ -31,7 +33,7 @@ CREATE or replace FUNCTION report.c01_sci_issues(issnl integer)  RETURNS xml AS 
         ),  -- each th
         (SELECT xmlagg(
           xmlelement(name tr,
-            xmlelement(name td,year), xmlelement(name td,volume), xmlelement(name td,issues)
+            xmlelement(name td,year), xmlelement(name td,volume), xmlelement(name td,issues_txt)
           )) -- xmlagg
         FROM (SELECT * FROM report.c01_issues_listpervol ORDER BY year DESC, volume DESC) t
         WHERE issn=$1
@@ -40,4 +42,20 @@ CREATE or replace FUNCTION report.c01_sci_issues(issnl integer)  RETURNS xml AS 
   ) FROM journal
   WHERE issn=$1
   ;
+$func$ LANGUAGE SQL IMMUTABLE;
+
+----------
+
+
+-----
+-- funções para a API
+
+CREATE or replace FUNCTION c01_issues_json(int) RETURNS jsonB AS $func$
+  -- ex. select c01_issues_json(74027)
+  SELECT to_jsonb(array_agg(to_jsonb(t)))
+  FROM (
+   SELECT year, volume, issues_json as issues -- falta expandir issues em objetos
+   FROM report.c01_issues_listpervol
+   WHERE issn=$1
+  ) t;
 $func$ LANGUAGE SQL IMMUTABLE;
