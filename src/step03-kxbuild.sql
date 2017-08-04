@@ -25,3 +25,5 @@ CREATE VIEW article_issue_count AS
    order by 1,2,3,4
 ;
 
+-- depois da carga use COPY article_issue_count TO '/tmp/article_issue_count.csv' CSV HEADER;
+-- montar planilha template scielo com awk, php ou perl
