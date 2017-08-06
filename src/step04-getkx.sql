@@ -1,4 +1,48 @@
 
+CREATE TABLE repository (
+  id    integer NOT NULL PRIMARY KEY,
+  name  text   NOT NULL,
+  label text   NOT NULL, -- lower case ASCII short-name, no spaces.
+  url   text,  -- official URL (as Wikipedia)
+  dtds  text[],
+  info jsonb,
+  UNIQUE (name),
+  UNIQUE (label)
+);
+
+CREATE TABLE journal_repository (
+  jrepo_id       serial NOT NULL PRIMARY KEY,
+  issnl          int    NOT NULL, -- references issn.intcode(issn_l)
+  repository_id  int    NOT NULL REFERENCES repository(id),
+  UNIQUE (issnl,repository_id)
+);
+
+-----
+
+INSERT INTO repository(id,name,label,url,dtds) VALUES
+ (1,'PubMed Central', 'pmc', 'http://www.ncbi.nlm.nih.gov/pmc/', 
+   array['nlm-jats-2','nlm-jats-3','jats-1.0','jats-1.1']::text[]
+ )
+ ,(2,'SciELO', 'scielo', 'http://www.scielo.org', 
+  array['thomson-jats-1','nlm-jats-3','sps-jats-1']::text[]
+ )
+;
+
+-- see kx_csv2foreign_tables.sql
+INSERT INTO journal_repository (issnl,repository_id) 
+ SELECT  issnl, 1::int repo_id
+ FROM (
+   SELECT DISTINCT issn.n2c( unnest(array[issn,eissn]) ) as issnl
+   FROM tmpcsv_pmc_ids
+ ) t
+ ORDER BY 1
+;
+
+----
+
+-- ... after all imports
+
+
 UPDATE article
   SET kx = kx_info
   FROM (
