@@ -1,23 +1,4 @@
 
-CREATE TABLE repository (
-  id    integer NOT NULL PRIMARY KEY,
-  name  text   NOT NULL,
-  label text   NOT NULL, -- lower case ASCII short-name, no spaces.
-  url   text,  -- official URL (as Wikipedia)
-  dtds  text[],
-  info jsonb,
-  UNIQUE (name),
-  UNIQUE (label)
-);
-
-CREATE TABLE journal_repository (
-  jrepo_id       serial NOT NULL PRIMARY KEY,
-  issnl          int    NOT NULL, -- references issn.intcode(issn_l)
-  repository_id  int    NOT NULL REFERENCES repository(id),
-  UNIQUE (issnl,repository_id)
-);
-
------
 
 INSERT INTO repository(id,name,label,url,dtds) VALUES
  (1,'PubMed Central', 'pmc', 'http://www.ncbi.nlm.nih.gov/pmc/', 
