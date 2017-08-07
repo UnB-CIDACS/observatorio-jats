@@ -36,15 +36,8 @@ CREATE FOREIGN TABLE tmpcsv_pmc_ids (
 	PMID bigint,
 	Manuscript_Id text,
 	Release_Date text
-)   SERVER csv_files OPTIONS ( 
-     filename '/tmp/PMC-ids.csv', 
-       format 'csv', 
+)   SERVER csv_files OPTIONS (
+     filename '/tmp/PMC-ids.csv',
+       format 'csv',
        header 'true'
 );
-
-CREATE VIEW tmpcsv_state_codes_current AS
-  SELECT * 
-  FROM tmpcsv_state_codes
-  WHERE extinction IS NULL
-  ORDER BY subdivision
-;
