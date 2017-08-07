@@ -1,5 +1,12 @@
+--
+-- Observatorio-JATS, core structures.
+--
 
-CREATE TABLE repository (
+DROP SCHEMA IF EXISTS core CASCADE;
+CREATE SCHEMA core;
+
+CREATE TABLE core.repository (
+  -- A digital repository of JATS, like PubMed Central or SciELO.
   id    integer NOT NULL PRIMARY KEY,
   name  text   NOT NULL,
   label text   NOT NULL, -- lower case ASCII short-name, no spaces.
@@ -10,7 +17,20 @@ CREATE TABLE repository (
   UNIQUE (label)
 );
 
-CREATE TABLE dtd (
+
+CREATE TABLE core.journal_repository (
+   --
+   -- All knowed journals with a knowed JATS repository.
+   -- This record ensure the provenience of articles and control of valid issn in a repo
+   --
+  id       serial NOT NULL PRIMARY KEY,
+  issnl          int    NOT NULL, -- references issn.intcode(issn_l), not need ref. core.journal
+  repository_id  int    NOT NULL REFERENCES core.repository(id),
+  UNIQUE (issnl,repository_id)
+);
+
+CREATE TABLE core.dtd (
+  -- to control valid JATS variants, v1.0, v1.1, JATS-SPS of SciELO, etc.
   id serial NOT NULL PRIMARY KEY,
   label text NOT NULL, -- ex. jats-1.1 from "JATS-v1.1", html-5 from "HTML-v5.0", etc.
   dtd_url text NOT NULL, -- ex. jats-1.1=ftp://ftp.ncbi.nih.gov/pub/jats/publishing/1.1/
@@ -19,43 +39,44 @@ CREATE TABLE dtd (
   UNIQUE(label)
 );
 
-CREATE TABLE journal (
+CREATE TABLE core.journal (
+  -- "In use" journal, to relate its articles. Need 1 or more articles in the database. Delete if no one.
   issn integer NOT NULL PRIMARY KEY,
   country text NOT NULL, -- 2-letter country code
-  name text,  -- full name
-  abbrev text,
-  info JSONb,
+  name text,   -- full name
+  abbrev text, -- like label, but an "official abbreviation"
+  info JSONb,  -- all other information, like other issns, publisher, country of the publisher, languages.
   kx   JSONb,  -- cache
   UNIQUE(country,abbrev)
 );
 
-CREATE TABLE journal_repository ( -- provenience of articles and control of valid issn in a repo
-  jrepo_id       serial NOT NULL PRIMARY KEY,
-  issnl          int    NOT NULL, -- references issn.intcode(issn_l)
-  repository_id  int    NOT NULL REFERENCES repository(id),
-  UNIQUE (issnl,repository_id)
-);
-
-CREATE TABLE article (
+CREATE TABLE core.article (
   id serial NOT NULL PRIMARY KEY,
-  issn integer  REFERENCES journal(issn), -- can be null when created
-  filename text,  -- official 
+  jrepo_id bigint NOT NULL REFERENCES core.journal_repository(id),
+  uri text,  -- official filename or doi.
   content xml,  -- JATS
-  jrepo_id bigint references journal_repository(jrepo_id), -- as content provenience
-  dtd  int REFERENCES dtd(id),
+  dtd  int REFERENCES core.dtd(id), -- important coherent with content.
   info JSONb,
-  kx   JSONb,  -- cache
-  UNIQUE(issn,filename) -- only one dtd per article. 
+  kx   JSONb,  -- cached from JATS contents
+  UNIQUE(jrepo_id,uri) -- only one dtd per article.
 );
 
-CREATE TABLE article_alt ( -- second dtd or second repo
+CREATE TABLE core.article_prepare (
+  -- many DTDs is possible, for prospection. No content here, only list all articles of a repo.
   id serial NOT NULL PRIMARY KEY,
-  id_ref bigint NOT NULL references article(id),
-  filename text,  -- official in the new repo
-  content xml,  -- JATS
-  dtd  int REFERENCES dtd(id),
+  jrepo_id bigint NOT NULL REFERENCES core.journal_repository(id),
+  dtd  int REFERENCES core.dtd(id),
+  uri text,  -- official in the new repo
   info JSONb,
-  kx   JSONb,  -- cache
-  UNIQUE(issn,filename) -- only one dtd per article. 
+  UNIQUE(jrepo_id,uri,dtd) -- only one dtd per article.
 );
 
+-- -- -- --
+-- Standard VIEWs
+
+CREATE VIEW core.vw_article_journal_repo AS
+  SELECT a.*, jr.issnl, jr.repository_id,
+     r.name as repo_name, r.label as repo_label, r.dtds as repo_dtds
+  FROM (core.article a INNER JOIN core.journal_repository jr ON jr.id=a.jrepo_id)
+       INNER JOIN core.repository r ON r.id=jr.id
+;
