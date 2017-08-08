@@ -13,12 +13,13 @@ INSERT INTO core.repository(id,name,label,url,dtds) VALUES
 ;
 
 -- see kx_csv2foreign_tables.sql
-INSERT INTO journal_repository (issnl,repository_id)
+INSERT INTO core.journal_repository (issnl,repository_id)
  SELECT  issnl, 1::int repo_id
  FROM (
    SELECT DISTINCT issn.n2c( unnest(array[issn,eissn]) ) as issnl
    FROM tmpcsv_pmc_ids
  ) t
+ WHERE issnl is not  null
  ORDER BY 1
 ;
 

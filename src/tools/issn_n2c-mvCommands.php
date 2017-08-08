@@ -12,5 +12,3 @@ foreach (file('php://stdin') as $line) if (preg_match('/([0-9][0-9\-Xx]*)/s',$li
 	//else echo "\n# pasta $issn fica como esta";
 }
 echo "\n#  final, $ndiff (de $n) dos códigos ISSN não eram canônicos, devem ser convertidos para ISSN-L\n";
-
-1678-8060
