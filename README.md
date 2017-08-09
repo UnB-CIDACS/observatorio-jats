@@ -39,7 +39,14 @@ Há naturalmente um funil de busca com criteriosa seleção, que envolve o traba
 
 ### Relatórios
 
-Os resultados das campanhas observacionais ficam registrados em relatórios... Por hora não temos nenhum para mostrar, aguarde!
+Os resultados das campanhas observacionais ficam registrados em relatórios... Por hora não temos nenhum para mostrar, aguarde! Ver exemplo em [campanhas/c04-consistencia/report-01.md](campanhas/c04-consistencia/report-01.md).
+
+## Documentação
+
+* [Instruçoes para instalação](docs/instalacao.md)
+* [Aquitetura e ferramentas](src/README.md).
+* ...
+
 
 ## Organizações que apoiam este projeto
 
