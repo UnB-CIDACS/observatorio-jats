@@ -1,6 +1,6 @@
 ---
 title: Apresentação da Campanha 001
-version: 0.0.3
+version: 0.0.4
 version_status: DRAFT
 endorsed_n: 0
 endorsed_status: no endorsement
@@ -9,7 +9,7 @@ layout: page
 
 # Campanha observacional das Revistas FioCruz
 
-**Objetivo**: Formação e avaliação de um corpus de textos de [periódicos FioCruz](http://periodicos.fiocruz.br) para o Observatório JATS, com base nos conteúdos JATS depositados no SciELO. Avaliação estatística do perfil das matérias publicadas e da qualidade da marcação JATS realizada.
+**Objetivo**: Formação e avaliação de um corpus de textos de [periódicos FioCruz](http://periodicos.fiocruz.br) para o Observatório JATS, com base nos conteúdos JATS depositados no SciELO e PMC. Avaliação estatística do perfil das matérias publicadas e avaliação comparativa da marcação JATS realizada nos artigos full-text (novos) e nos parciais (anteriores a 2013).
 
 **Inicio**: 2017-08-06
 
@@ -26,13 +26,13 @@ Os periódicos FioCruz formam um corpus consistente, cobrindo diversos aspectos 
 
 ## METODOLOGIA
 
-As avaliações e formulação metodológica foram desenvolvidas gradualmente. Um levantamento preliminar de "prova de conceito" foi realizado com o a revista ISSN-L 0074-0276 (FioCruz-Memórias). Em seguida complementou-se com 0102-311X  e 1678-1007, todos obtidos do acervo SciELO.
+Levantamentos preliminares de "prova de conceito" com revista ISSN-L 0074-0276 (FioCruz-Memórias), em seguida complementos com 0102-311X  e 1678-1007, todos obtidos do acervo SciELO de front-back. Depois a 0074-0276 em full-text e comparativos com a PLOS.
 
-As avaliações foram organizadas em dois grupos, um primeiro de testes para calibrar e homologar as fontes de dados, um segundo de "questionamentos", para avaliar qual tipo de perguntas simples seríamos capazes de responder sem auxílio de outros recursos além do SQL e XPath aplicados ao JATS.
+Avaliações organizadas em dois grupos, um primeiro de testes para calibrar e homologar as fontes de dados, um segundo de "questionamentos", para avaliar qual tipo de perguntas simples seríamos capazes de responder sem auxílio de outros recursos além do SQL e XPath aplicados ao JATS.
 
 ### Testes e calibrações
 
-Verificação através de compração com dados do SciELO, para homologar os arquivos JATS em uso. Resultados no relatório **[report-01.md](report-01.md)**.
+... Ver campanha "Consistência".
 
 ### Questionamentos
 

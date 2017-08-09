@@ -8,6 +8,8 @@ São ~4 milhões de artigos JATS no [PubMed Central](https://www.ncbi.nlm.nih.go
 
 É um *observatório* de fato, pois há um "universo" que não damos conta de conhecer, dada a quantidade imensa de arquivos JATS e de detalhes contidos neles; mas podemos escolher um "alvo", e nos pormos a observar o que existe naquela região do "espaço JATS"... E para observar precisamos de ferramentas e pessoas operando essas ferramentas, constituindo assim um observatório.
 
+![](docs/assets/equipes.png)
+
 Os alvos são assuntos ou perguntas viáveis do ponto de vista estatístico. Assim como num grande observatório astronômico, mantido por uma comunidade, o sucesso de suas observações depende do sucesso e alinhamento entre duas sub-comunidades: o grupo que formula as perguntas e dá significado às observações dentro de suas teorias, e o grupo que põe a mão na massa, sabe operar o equipamento, e realiza ou auxilia  nas *campanhas observacionais*.
 
 Junte-se ao  Observatório JATS: juntando-se a uma *curadoria*, o grupo que faz perguntas dentro do seu escopo de interesse; ou juntando-se aos *experts* em buscas, estatísticas e JATS, que operam o observatório.

@@ -1,4 +1,10 @@
 <?php
+/**
+ * CLI interface (console) for some operations of the JATS Observatory.
+ */
+
+foreach (glob(__DIR__ . '/../../campanhas/c*/src/console.inc') as $inc)
+	require_once($inc);
 
 
 $HELP = <<<EOHELP
@@ -12,10 +18,13 @@ Comandos:
 * serv issn
 * list jou
 * help
+* help add
+* help serv
+* help ...
 EOHELP;
 $context='';
 
-
+$isCli = (php_sapi_name() === 'cli');
 print "$HELP\n";
 
 do {
@@ -63,7 +72,7 @@ function cmd_parse($cmd,$context) {
 	case 'q':
 	case 'quit':
 	  $cmd = 'quit';
-		$msg = '... Tudo bem, adeus!';
+		$msg = '... Bye!';
 		break;
 	default:
 		$msg = "comando '$cmd' desconhecido, use help ou quit";
@@ -77,11 +86,10 @@ function cmd_parse($cmd,$context) {
 		case 'serv issn':
 			$msg = "Service ISSN-resolver, executando issn/$params:\n";
 			$res = new app("issn/$params");
-			$msg.="=$res\n!"
+			$msg.="=$res\n!";
 			break;
 		case 'serv etc':
 			$msg = "Service ETC, executando $cmd/$params:\n";
-	    //$delContext=false;
 			break;
 		case 'help add':
 			$msg = "Help do comando '$cmd':\n jou, art, etc.";
@@ -107,7 +115,7 @@ function cmd_parse($cmd,$context) {
 /////////////// LIB
 
 
-class app {
+class app {  // COPY FROM
   // CONFIGS:
   var $PG_CONSTR = 'pgsql:host=localhost;port=5432;dbname=obs2';
   var $PG_USER = 'postgres';
