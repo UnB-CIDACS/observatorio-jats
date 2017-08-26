@@ -5,14 +5,18 @@
 
 # # # # # # STEP-1_3.1
 cd /tmp
-#rm -r obsjats
+if [ -d obsjats ]; then
+  read -p "Apagar tudo do tmp/obsjats? (S/N)" yn
+  case $yn in
+      [YySs]* ) rm -r obsjats; break;;
+      [Nn]* ) break;;
+      * ) echo "Please answer yes or no.";;
+  esac
+fi
 mkdir obsjats
+cd obsjats
 
 # # # # # # STEP-1_3.2
-
-# tmpcsv_pmc_ids
-#wget -c ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/PMC-ids.csv.gz
-#gunzip PMC-ids.csv.gz
 
 # tmpcsv_families
 wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/families.csv
@@ -31,6 +35,17 @@ wget -c https://raw.githubusercontent.com/ppKrauss/openCoherence/master/data/sci
 
 # tmpcsv__xpathTransducers
 wget -c https://raw.githubusercontent.com/ppKrauss/openCoherence/master/data/xpathTransducers.csv
+
+## bigdata
+
+# tmpcsv_doaj
+wget -c -O doaj.csv https://doaj.org/csv
+# awk 'NR>1' doaj.csv > doaj_noHeader.csv
+
+# tmpcsv_pmc_ids
+wget -c ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/PMC-ids.csv.gz
+gunzip PMC-ids.csv.gz
+
 
 # # # # # # STEP-1_4
 

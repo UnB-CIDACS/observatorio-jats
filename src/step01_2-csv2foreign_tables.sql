@@ -130,8 +130,45 @@ CREATE FOREIGN TABLE tmpcsv_sciRepos (
  * XPath transducers.
  * @see https://github.com/ppKrauss/openCoherence/blob/master/data/xpathTransducers.csv
  */
-CREATE FOREIGN TABLE tmpcsv__xpathTransducers (
+CREATE FOREIGN TABLE tmpcsv_xpathTransducers (
     jkey_group integer, jkey text, transducer integer, xpath_str text, dtds text, xpath_ns text
 ) SERVER csv_files OPTIONS (
     filename '/tmp/obsjats/dftLicences-sciAuthorities.csv',  format 'csv',  header 'true'
+);
+
+
+/**
+ * DOAJ last version.
+ * @see https://doaj.org/csv
+ */
+CREATE FOREIGN TABLE tmpcsv_doaj (
+"Journal title" text, "Journal URL" text, "Alternative title" text, "Journal ISSN (print version)" text,
+"Journal EISSN (online version)" text, "Publisher" text, "Society or institution" text,
+"Platform, host or aggregator" text, "Country of publisher" text,
+"Journal article processing charges (APCs)" text, "APC information URL" text,
+"APC amount" text, "Currency" text, "Journal article submission fee" text, "Submission fee URL" text,
+"Submission fee amount" text, "Submission fee currency" text,
+"Number of articles publish in the last calendar year" text, "Number of articles information URL" text,
+"Journal waiver policy (for developing country authors etc)" text, "Waiver policy information URL" text,
+"Digital archiving policy or program(s)" text, "Archiving: national library" text, "Archiving: other" text,
+"Archiving infomation URL" text, "Journal full-text crawl permission" text,
+"Permanent article identifiers" text, "Journal provides download statistics" text,
+"Download statistics information URL" text,
+"First calendar year journal provided online Open Access content" text,
+"Full text formats" text, "Keywords" text, "Full text language" text,
+"URL for the Editorial Board page" text, "Review process" text, "Review process information URL" text,
+"URL for journal's aims & scope" text, "URL for journal's instructions for authors" text,
+"Journal plagiarism screening policy" text, "Plagiarism information URL" text,
+"Average number of weeks between submission and publication" text,
+"URL for journal's Open Access statement" text,
+"Machine-readable CC licensing information embedded or displayed in articles" text,
+"URL to an example page with embedded licensing information" text, "Journal license" text,
+"License attributes" text, "URL for license terms" text,
+"Does this journal allow unrestricted reuse in compliance with BOAI?" text,
+"Deposit policy directory" text, "Author holds copyright without restrictions" text,
+"Copyright information URL" text, "Author holds publishing rights without restrictions" text,
+"Publishing rights information URL" text, "DOAJ Seal" text, "Tick: Accepted after March 2014" text,
+"Added on Date" text, "Subjects" text
+) SERVER csv_files OPTIONS (
+    filename '/tmp/obsjats/doaj.csv',  format 'csv',  header 'true'
 );
