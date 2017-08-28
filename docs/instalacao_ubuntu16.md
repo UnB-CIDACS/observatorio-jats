@@ -3,16 +3,16 @@
 ## Instalação no UBUNTU 16 LTS
 
 Fazer no `/tmp`  `git clone https://github.com/okfn-brasil/suporte.git` para
-seguir o passo-a-passo recomendado no [suporte da OKBr](https://github.com/okfn-brasil/suporte/tree/master/webservers), 
-que parece se limitar ao NGinx... 
+seguir o passo-a-passo recomendado no [suporte da OKBr](https://github.com/okfn-brasil/suporte/tree/master/webservers),
+que parece se limitar ao NGinx...
 
 ### Instalação do PostgreSQL
-Então acrescentar a instalação do PostgreSQL conforme as próprias recomendações 
+Então acrescentar a instalação do PostgreSQL conforme as próprias recomendações
 da distribuição oficial, https://www.postgresql.org/download/linux/ubuntu/
 
 Até o passo `apt install postgresql-9.6` depois ainda adicionar `apt install postgresql-contrib-9.6`.
 
-Para garantir todas as modificaçes fazer `service postgresql restart` e conferir com `service postgresql status`. 
+Para garantir todas as modificaçes fazer `service postgresql restart` e conferir com `service postgresql status`.
 
 Este projeto adota para todas as instruções e discusses o usuário padrão `postgres`  e sua senha de mesmo nome.
 
@@ -47,10 +47,8 @@ https://stackoverflow.com/a/26735105/287948
 
 (trust depois md5)
 
- 
+## Instalação PHP
 
+Se não for usar no server, basta para rodar antigos instaladores o
 
-
-
-
-
+`apt install php7.0-cli php-xml php7.0-pgsql`

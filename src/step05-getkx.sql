@@ -1,5 +1,5 @@
 --
--- Inserts
+-- Inserts. See also kx_csv2foreign_tables.sql
 --
 
 INSERT INTO core.repository(id,name,label,url,dtds) VALUES
@@ -12,7 +12,10 @@ INSERT INTO core.repository(id,name,label,url,dtds) VALUES
  )
 ;
 
--- see kx_csv2foreign_tables.sql
+-- -- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- -- --
+-- FROM CSV-files TO core
+
 INSERT INTO core.journal_repository (issnl,repository_id)
  SELECT  issnl, 1::int repo_id
  FROM (
@@ -22,16 +25,38 @@ INSERT INTO core.journal_repository (issnl,repository_id)
  WHERE issnl is not  null
  ORDER BY 1
 ;
+-- DROP FOREIGN TABLE tmpcsv_pmc_ids;
 
-----
+-- -- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- -- --
+-- FROM CSV-files TO kx
 
--- ... after all imports
 
+INSERT INTO kx.families(family,scope,sort) SELECT * FROM tmpcsv_families;
 
-UPDATE article
-  SET kx = kx_info
-  FROM (
-   SELECT id, to_json(article_metas1) as kx_info FROM article_metas1
-  ) t
-  WHERE t.id=article.id
+INSERT INTO kx.licenses (id_label, id_version, name, family, title, info)
+  SELECT id_label, id_version, name, family, title, jsonb_build_object(
+        'year',year, 'url',url,
+        'domain_content', domain_content::boolean,
+        'domain_data', domain_data::boolean,
+        'domain_software', domain_software::boolean,
+        'is_by', is_by::boolean,
+        'is_sa', is_sa::boolean,
+        'is_nd', is_nd::boolean
+        )
+  FROM tmpcsv_licenses
+  WHERE family is not null
+  UNION
+  (
+    SELECT id_label, id_version, name, family, title, jsonb_build_object(
+    'year',year, 'url',url_ref,
+    'domain_content', domain_content::boolean,
+    'domain_data', domain_data::boolean,
+    'domain_software', domain_software::boolean,
+    'is_by', is_by::boolean,
+    'is_sa', is_sa::boolean
+    )
+    FROM tmpcsv_implieds
+
+  )
 ;

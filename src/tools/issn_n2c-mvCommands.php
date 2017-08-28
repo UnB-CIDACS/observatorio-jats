@@ -1,5 +1,7 @@
-# Script shell com comandos para renomear ISSNs erraoddos.
-# Gerado por:   ls | php conv.php > convPerigo.sh
+#
+# Script shell com comandos para renomear ISSNs erraoddos nos diretórios do SciELO.
+# Gera um script com todos os comandos mv
+# Uso: ls | php issn_n2c-mvCommands.php
 #
 <?php
 fwrite(STDERR, "\n... Aguarde, conferindo cada um dos itens... \n\t(resultados shell no STDOUT)\n" );

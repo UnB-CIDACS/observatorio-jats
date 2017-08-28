@@ -17,6 +17,8 @@ CREATE VIEW kx.vw_article_metas1 AS
    trim((xpath('/article/front//volume/text()', content))[1]::text) as volume,
    trim((xpath('/article/front//issue/text()', content))[1]::text) as issue,
    lib.trim2( xpath('/article/front//article-title/text()',content) ) as title,
+   trim((xpath('/article/front//abstract/text()', content))[1]::text) as abstract,
+   trim((xpath('/article/front//pub-date[@pub-type="epub"]/text()', content))[1]::text) as epub_date,
    xmlexists('/article/body' PASSING BY REF content) as has_body,
    xmlexists('/article/front//permissions' PASSING BY REF content) as has_permiss,
    (xpath('count(/article/body//table)', content))[1]::text::integer as n_btables,
@@ -86,3 +88,25 @@ CREATE VIEW kx.vw_article_issue_count AS
 
 -- depois da carga use COPY article_issue_count TO '/tmp/article_issue_count.csv' CSV HEADER;
 -- montar planilha template scielo com awk, php ou perl
+
+
+-- -- -- -- --
+-- -- -- -- --
+-- Datasets (from OpenCoherence model)
+
+CREATE TABLE kx.families (
+  family text NOT NULL PRIMARY KEY,
+  scope text NOT NULL,
+  sort int
+);
+
+CREATE TABLE kx.licenses (
+  id_label   text NOT NULL CHECK(lower(id_label)=id_label),
+  id_version text DEFAULT '',
+  name   text NOT NULL CHECK(lower(replace(name,' ','-'))=(id_label||CASE WHEN id_version>'' THEN '-'||id_version ELSE '' END)),
+  family text NOT NULL REFERENCES kx.families(family),
+  title  text NOT NULL CHECK(trim(title)>''),
+  info JSONb,
+  UNIQUE(id_label,id_version),
+  UNIQUE(title)
+);

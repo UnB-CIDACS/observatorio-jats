@@ -1,70 +1,116 @@
 <?php
-/*
-
-===
-- (resgatar ) E-mail para os candidatos a associados efetivos.
-
-Sobre as balas perdidas no Rio de Janeiro, já se demonstrou que as balas perdias não são tão perdidas assim,
-" O Brasil é um país em que os corruptos seriais assumiram o comando.
-  A podridão moral deles é o fio invisível que dirige a bala	(...)
-", R.P.Toledo
-===
-
-*/
-
-
 /**
  * CLI interface (console) for some operations of the JATS Observatory.
  */
 
-//require_once('console_CmdClass.inc');
-
-// command-name = array['param1','param2',..., msg]
-$COMMANDS = [
-		'quit' =>['... Bye!'],
-		'help' =>['_context_','msg help'],
-		'list' =>["Listando algo: jou=revistas, a=articles, etc.\nuse list X"],
-		'add'  =>['_context_', "Adicionando algo: jou=revista, art=article, etc.\nuse add X"],
-		'list' =>['_context_',''],
-		'serv' =>['_context_',''],
-		'serv' =>['_context_',''],
-];
-
 foreach (glob(__DIR__ . '/../../campanhas/c*/src/console.inc') as $inc)
 	require_once($inc);
 
+
+$HELP = <<<EOHELP
+Command-line Interface (CLI) do Observatório JATS
+-------------------------------------------------
+
+Comandos:
+
+* quit
+* add jou
+* serv issn
+* list jou
+* help
+* help add
+* help serv
+* help ...
+EOHELP;
 $context='';
-$HELP = "Command-line Interface (CLI) do Observatório JATS
--------------------------------------------------\n
-Comandos:";
-foreach ($COMMANDS as $i=>$a) {
-	array_pop($a);
-	$HELP .= "\n * $i ".join(' ',$a);
-}
 
 $isCli = (php_sapi_name() === 'cli');
 print "$HELP\n";
 
 do {
-	$line = readline("\n#cmd? ");
-	list($cmd,$params) = cmd_parse($line);
-	//print "\n\t\tcmd='$cmd'\n";
+	$cmd = readline("\n#cmd? ");
+	list($cmd,$context) = cmd_parse($cmd,$context);
 } while($cmd != 'quit');
 
 
 // // // // // //
 
-function cmd_parse($line) {
-	global $isCli;
-	global $COMMANDS;
+function cmd_parse($cmd,$context) {
+	$context = trim($context);
 	$contextNew = false;
 	$delContext = true;
 	$params = '';
-	$cmd_std = strtolower(trim($line));
-	if (preg_match('/^\s*(\w+)(?:\s+(.+))?$/s',$cmd_std,$m)) {
-		return isset($m[2])? [$m[1],$m[2]]: [$m[1],''];
-	} else return ['',''];
+	// if (preg_match('#^([^\s/]+)\s+(?:(.+)|(/)(.*))$#is',$cmd,$m)) { // ignora context
+	if (preg_match('#^(?:(serv)\s+([^\s/]+)(?:[/\s]?(.+))?)|(?:([^\s/]+)\s+(.+))$#is',$cmd,$m)) { // ignora context
+		// var_dump($m);
+		if ($m[1]=='serv') {
+			$context = 'serv';
+			$cmd     = $m[2];
+			$params  = $m[3];
+		} else {
+			$context = $m[4];
+			$cmd = $m[5];
+		}
+		$contextNew = true;
+	}
+	$cmd = trim(strtolower($cmd));
+	$msg = "... certo, usando '$cmd'...";
+	if (!$context) switch ($cmd) {
+	case 'help':
+		global $HELP;
+		$msg = $HELP;
+		break;
+	case 'add':
+		$msg = "Adicionando algo: jou=revista, art=article, etc.\nuse add X";
+		break;
+	case 'list':
+		$msg = "Listando algo: jou=revistas, a=articles, etc.\nuse list X";
+		break;
+	case 'serv':
+		$msg = "Sevices disponiveis: issn=revista, ...\nuse serv X";
+		break;
+	case 'q':
+	case 'quit':
+	  $cmd = 'quit';
+		$msg = '... Bye!';
+		break;
+	default:
+		$msg = "comando '$cmd' desconhecido, use help ou quit";
+		$cmd='';
+
+	} else {
+	if (!$contextNew) print "\n (... ainda no contexto $context ...)";
+	//if ($cmd!='help' && $context=='help') $delContext=false;
+	$isCli = (php_sapi_name() === 'cli');
+	switch ("$context $cmd") {
+		case 'serv issn':
+			$msg = "Service ISSN-resolver, executando issn/$params:\n";
+			$res = new app("issn/$params");
+			$msg.="=$res\n!";
+			break;
+		case 'serv etc':
+			$msg = "Service ETC, executando $cmd/$params:\n";
+			break;
+		case 'help add':
+			$msg = "Help do comando '$cmd':\n jou, art, etc.";
+			break;
+		case 'help issn':
+			$msg = "Help do ISSN-resolver ....";
+			break;
+		case 'help ins':
+			$msg = "Help do comando '$cmd':\n jou, jous, articles";
+      break;
+		default:
+			$msg = "context '$context', comando '$cmd' desconhecido";
+	}
+	}
+
+	readline_add_history($cmd);
+	print "\n$msg\n";
+	if ($delContext) $context='';
+	return [$cmd,$context];
 }
+
 
 /////////////// LIB
 

@@ -123,7 +123,7 @@ CREATE FOREIGN TABLE tmpcsv_dftlic_sciAuthorities (
 CREATE FOREIGN TABLE tmpcsv_sciRepos (
     label text, name text, "repo-wikidataID" text, url text, "repo-wikidataID-rel" text, "url-dft-lincense" text
 ) SERVER csv_files OPTIONS (
-    filename '/tmp/obsjats/dftLicences-sciAuthorities.csv',  format 'csv',  header 'true'
+    filename '/tmp/obsjats/sciRepos.csv',  format 'csv',  header 'true'
 );
 
 /**
@@ -133,7 +133,7 @@ CREATE FOREIGN TABLE tmpcsv_sciRepos (
 CREATE FOREIGN TABLE tmpcsv_xpathTransducers (
     jkey_group integer, jkey text, transducer integer, xpath_str text, dtds text, xpath_ns text
 ) SERVER csv_files OPTIONS (
-    filename '/tmp/obsjats/dftLicences-sciAuthorities.csv',  format 'csv',  header 'true'
+    filename '/tmp/obsjats/xpathTransducers.csv',  format 'csv',  header 'true'
 );
 
 

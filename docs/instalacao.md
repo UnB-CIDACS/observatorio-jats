@@ -55,6 +55,9 @@ O último comando `psql` apenas faz testes de certificação, não precisa se pr
 
 Apesar de não ser obrigatório, é interessante ir obtendo algum recheio para testes, e para lembrar como proceder com a ampla fonte de datasets externos.  As tabelas `tmp*` de `step01_2-csv2foreign_tables.sql` são drivers de leitura de arquivos CSV padronizados.
 
+Ver script [*step01_3-foreign_tables*](../src/step01_3-foreign_tables.sh). Estando na raiz do projeto, rodar `sh src/step01_3-foreign_tables.sh`. Todas as cargas serão feitas no `/tmp` de modo que é necessário fazer seu uso logo em seguida.
+
+<!--
 1. `cd /tmp`
 2. `wget ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/PMC-ids.csv.gz`
 3. `gunzip PMC-ids.csv.gz`  (prepara `/tmp/PMC-ids.csv` de ~400Mb)
@@ -62,6 +65,7 @@ Apesar de não ser obrigatório, é interessante ir obtendo algum recheio para t
 5. (opcional e depois da carga do CSV para dentro do SQL) `DROP SERVER csv_files CASCADE;`
 
 Os passos 2 e 3 podem se repetir para outras fontes de CSV. Atualize o `step01_2-csv2foreign_tables.sql` com as novas estruturas.
+-->
 
 ## Instalação principal
 
