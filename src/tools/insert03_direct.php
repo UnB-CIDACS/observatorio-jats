@@ -11,9 +11,10 @@ $url_base = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id
 if ($argc<2) die("\nERRO: falta argumento com ID do repositório\n");
 $repoID = $argv[1];
 
+$repo = 1; // ID do PMC
+
 $statement = $link->prepare("
-  INSERT INTO core.article (jrepo_id,uri,content) VALUES
-  VALUES($repoID, :uri,  XMLPARSE (DOCUMENT :content) )
+  SELECT core.insert_article($repo, :uri, XMLPARSE (DOCUMENT :content))
 ");
 
 while ($pmid = fgets(STDIN)) {
@@ -25,6 +26,4 @@ while ($pmid = fgets(STDIN)) {
 	    "content" => $xml
 	));
 }
-
-
 

@@ -1,0 +1,23 @@
+tmp:
+  _title: Gestão do tmp
+  _func:  _menu
+  _params:
+    xml:
+      _title: Gestão dos arquivos XML
+      _func:  gestao_xml
+      _params_flags: input
+    csv:
+      _title: Gestão dos arquivos CSV
+      _func:  gestao_csv
+      _params_flags: input
+
+carga:
+  _title: Carga dos dados do diretório /tmp para a base de dados
+  _func:  _menu
+  _params:
+    xml:
+      _title: Carga dos arquivos XML
+      _func:  _menu
+    csv:
+      _title: Carga dos arquivos CSV
+      _func:  _menu

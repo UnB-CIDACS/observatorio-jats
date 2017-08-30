@@ -86,7 +86,6 @@ CREATE VIEW core.vw_article_journal_repo AS
 -------------
 --LIB INSERT
 
-
 CREATE or replace FUNCTION core.insert_article_byjou(
  p_jrepo_id int,
  p_uri text,
@@ -95,7 +94,7 @@ CREATE or replace FUNCTION core.insert_article_byjou(
   INSERT INTO core.article (jrepo_id,uri,content) 
   VALUES($1, $2,  $3 ) RETURNING id
   ;
-$f$ LANGUAGE sql IMMUTABLE;
+$f$ LANGUAGE SQL;
 
 
 CREATE or replace FUNCTION core.get_issn(xml) RETURNS int AS $f$
@@ -103,7 +102,7 @@ CREATE or replace FUNCTION core.get_issn(xml) RETURNS int AS $f$
 	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()', 
 	$1
 	))[1]::text) );
-$f$ LANGUAGE sql IMMUTABLE;
+$f$ LANGUAGE SQL IMMUTABLE;
 
 
 
@@ -117,7 +116,10 @@ CREATE or replace FUNCTION core.insert_article(
      ,$2
      ,$3
   );
-$f$ LANGUAGE sql IMMUTABLE;
+$f$ LANGUAGE SQL;
+
+
+
 
 
 
