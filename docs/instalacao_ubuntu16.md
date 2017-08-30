@@ -1,4 +1,4 @@
-
+(valta `apt install php-mbstring`
 
 ## Instalação no UBUNTU 16 LTS
 
