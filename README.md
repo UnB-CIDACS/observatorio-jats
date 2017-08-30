@@ -2,7 +2,7 @@
 
 O [_Journal Article Tag Suite_](https://en.wikipedia.org/wiki/Journal_Article_Tag_Suite) (**JATS**) é um formato XML usado para formatar e descrever a estrutura interna de conteúdos digitais da literatura científica. É o padrão técnico (formalmente NISO-ANSI Z39.96-2012) mais utilizado por [periódicos científicos](https://en.wikipedia.org/wiki/Scientific_journal). Não é apenas um padrão para  mostrar ou editar o conteúdo, como PDF, HTML, DOC, etc. É um padrão para dar significado às partes do conteúdo, e para indicar com todos os detalhes e de forma padronizada, os [metadados](https://en.wikipedia.org/wiki/Metadata) da publicação e da [proveniência](https://www.wikidata.org/wiki/Q30105403) de dados e da autoria.
 
-São ~4 milhões de artigos JATS no [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/), ~0,5 milhões no [SciELO](http://www.scielo.org), mais alguns milhões dispersos em diversos outros repositórios JATS.
+> São ~4 milhões de artigos JATS no [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/), ~0,5 milhões no [SciELO](http://www.scielo.org), mais alguns milhões dispersos em diversos outros repositórios JATS.
 
 ... É tanto JATS, e ninguém olha para eles como "mina de ouro" de conhecimento estruturado, ao menos no Brasil: a iniciativa do **Observatório JATS** nasceu para isso, para explorarmos mais essa imensa base de dados científicos, certificados, bem organizados, com estrutura e semântica bem definidas.
 
