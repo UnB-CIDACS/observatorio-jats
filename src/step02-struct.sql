@@ -80,3 +80,45 @@ CREATE VIEW core.vw_article_journal_repo AS
   FROM (core.article a INNER JOIN core.journal_repository jr ON jr.id=a.jrepo_id)
        INNER JOIN core.repository r ON r.id=jr.id
 ;
+
+
+
+-------------
+--LIB INSERT
+
+
+CREATE or replace FUNCTION core.insert_article_byjou(
+ p_jrepo_id int,
+ p_uri text,
+ p_content XML
+) RETURNS int AS $f$
+  INSERT INTO core.article (jrepo_id,uri,content) 
+  VALUES($1, $2,  $3 ) RETURNING id
+  ;
+$f$ LANGUAGE sql IMMUTABLE;
+
+
+CREATE or replace FUNCTION core.get_issn(xml) RETURNS int AS $f$
+  SELECT issn.cast( trim((xpath(
+	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()', 
+	$1
+	))[1]::text) );
+$f$ LANGUAGE sql IMMUTABLE;
+
+
+
+CREATE or replace FUNCTION core.insert_article(
+ p_repo_id int,
+ p_uri text,
+ p_content XML
+) RETURNS int AS $f$
+  SELECT core.insert_article_byjou(
+     (SELECT id FROM core.journal_repository WHERE  repository_id=$1 AND issnl=core.get_issn($3) )
+     ,$2
+     ,$3
+  );
+$f$ LANGUAGE sql IMMUTABLE;
+
+
+
+
