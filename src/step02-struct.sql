@@ -119,8 +119,10 @@ CREATE or replace FUNCTION core.insert_article(
 $f$ LANGUAGE SQL;
 
 
-
-
-
-
+CREATE or replace FUNCTION core.get_issn(xml) RETURNS int AS $f$
+  SELECT issn.cast( trim((xpath(
+	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()', 
+	$1
+	))[1]::text) );
+$f$ LANGUAGE SQL IMMUTABLE;
 

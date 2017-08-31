@@ -12,22 +12,23 @@ CREATE VIEW kx.vw_article_metas1 AS
   -- FALTA lang do artigo e sua DTD, além de relacionar com repositório-origem (autoridade do dump obtido)
    -- substituir por função que captura direto todos os Xpaths pro JSON. Vantagem aqui pode ser otimização
    -- interna do PostgreSQL que criaria o DOM uma vez só para todos... Por ser cache não apita muito.
-   (xpath('count(/article)', content))[1]::text::integer as n_articles,
-   (xpath('/article/front//pub-date/year/text()', content))[1]::text::integer as year,
-   trim((xpath('/article/front//volume/text()', content))[1]::text) as volume,
-   trim((xpath('/article/front//issue/text()', content))[1]::text) as issue,
-   lib.trim2( xpath('/article/front//article-title/text()',content) ) as title,
-   trim((xpath('/article/front//abstract/text()', content))[1]::text) as abstract,
-   trim((xpath('/article/front//pub-date[@pub-type="epub"]/text()', content))[1]::text) as epub_date,
-   xmlexists('/article/body' PASSING BY REF content) as has_body,
-   xmlexists('/article/front//permissions' PASSING BY REF content) as has_permiss,
-   (xpath('count(/article/body//table)', content))[1]::text::integer as n_btables,
-   (xpath('count(/article/body//fig)', content))[1]::text::integer as n_bfigs,
-   (xpath('count(/article/back/ref-list/ref)', content))[1]::text::integer as n_refs,
+   (xpath('count(//article)', content))[1]::text::integer as n_articles,
+   (xpath('//article/front//pub-date/year/text()', content))[1]::text::integer as year,
+   trim((xpath('//article/front//volume/text()', content))[1]::text) as volume,
+   trim((xpath('//article/front//issue/text()', content))[1]::text) as issue,
+   lib.trim2( xpath('//article/front//article-title//text()',content) ) as title,
+   lib.trim2( xpath('//article/front//abstract//text()', content) ) as abstract,
+   trim((xpath('//article/front//pub-date[@pub-type="epub"]/text()', content))[1]::text) as epub_date,
+   xmlexists('//article/body' PASSING BY REF content) as has_body,
+   xmlexists('//article/front//permissions' PASSING BY REF content) as has_permiss,
+   (xpath('count(//article/body//table)', content))[1]::text::integer as n_btables,
+   (xpath('count(//article/body//fig)', content))[1]::text::integer as n_bfigs,
+   (xpath('count(//article/back/ref-list/ref)', content))[1]::text::integer as n_refs,
    char_length(content::text) as nchars_xml,
-   char_length(  array_to_string( (xpath('/article//text()', content))::text[] ,'')  )  as nchars_txt
+   char_length(  array_to_string( (xpath('//article//text()', content))::text[] ,'')  )  as nchars_txt
   FROM core.article
 ;
+
 
 CREATE VIEW kx.vw_article_metas1_sql AS
   -- to be used after update of cache!
