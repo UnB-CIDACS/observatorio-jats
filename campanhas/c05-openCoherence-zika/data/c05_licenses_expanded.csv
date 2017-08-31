@@ -1,0 +1,10 @@
+n,ids,xml_license
+15,"{2637,971,539,1070,484,283,466,351,379,1831,471,2132,2147,2442,465}","<license license-type=""open-access"">
+          <license-p>Freely available online through the PNAS open access option.</license-p>
+        </license>"
+1,{2531},"<license license-type=""open-access"">
+        <p>Freely available online through the PNAS open access option.</p>
+      </license>"
+17,"{1937,822,573,413,435,417,1958,731,811,661,881,1038,1153,1372,1422,1488,1490}","<license xmlns:xlink=""http://www.w3.org/1999/xlink"" license-type=""asm"" xlink:href=""https://doi.org/10.1128/ASMCopyrightv1"">
+          <license-p><ext-link ext-link-type=""uri"" xlink:href=""https://doi.org/10.1128/ASMCopyrightv1"">All Rights Reserved</ext-link>.</license-p>
+        </license>"
