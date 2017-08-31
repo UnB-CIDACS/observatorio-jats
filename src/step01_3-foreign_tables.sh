@@ -4,17 +4,21 @@
 #
 
 # # # # # # STEP-1_3.1
-cd /tmp
+
+#... supondo ainda na pasta observatoio-jats...
+
 if [ -d obsjats ]; then
   read -p "Apagar tudo do tmp/obsjats? (S/N)" yn
   case $yn in
-      [YySs]* ) rm -r obsjats; break;;
+      [YySs]* ) rm -r /tmp/obsjats; mkdir /tmp/obsjats; break;;
       [Nn]* ) break;;
       * ) echo "Please answer yes or no.";;
   esac
+else
+  mkdir /tmp/obsjats
 fi
-mkdir obsjats
-cd obsjats
+cp data/caches/issn_using_meta.csv /tmp/obsjats
+cd /tmp/obsjats
 
 # # # # # # STEP-1_3.2
 
