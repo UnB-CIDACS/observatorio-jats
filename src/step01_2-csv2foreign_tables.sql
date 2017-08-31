@@ -78,6 +78,21 @@ CREATE FOREIGN TABLE tmpcsv_licenses (
 );
 
 /**
+ * License_urls.
+ * @see https://github.com/ppKrauss/licenses/blob/master/data/license_urls.csv
+ */
+CREATE FOREIGN TABLE tmpcsv_license_urls (
+	name text,
+	url_type text,
+	lang text,
+	is_trans text,
+	is_cool text,
+	url text
+) SERVER csv_files OPTIONS (
+    filename '/tmp/obsjats/license_urls.csv',  format 'csv',  header 'true'
+);
+
+/**
  * Implied licenses.
  * @see https://github.com/ppKrauss/licenses/blob/master/data/implieds.csv
  */
