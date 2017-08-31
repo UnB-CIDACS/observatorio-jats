@@ -37,6 +37,19 @@ CREATE FOREIGN TABLE tmpcsv_pmc_ids (
 );
 
 /**
+ * Journal metadata, by ISSN from Worldcat.
+ * @see data/caches/issn_using_meta.csv
+ * @see src/tools/carga_worldcat.php
+ */
+CREATE FOREIGN TABLE tmpcsv_journalmeta (
+    issnl text,issn_ref text, publisher text,form text, title text,
+    rssurl text,peerreview text
+) SERVER csv_files OPTIONS (
+    filename '/tmp/obsjats/issn_using_meta.csv',  format 'csv',  header 'true'
+);
+
+
+/**
  * License families.
  * @see https://github.com/ppKrauss/licenses/blob/master/data/families.csv
  */
