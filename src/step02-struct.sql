@@ -74,13 +74,19 @@ CREATE TABLE core.article_prepare (
 -- -- -- --
 -- Standard VIEWs
 
-CREATE VIEW core.vw_article_journal_repo AS
-  SELECT a.*, jr.issnl, jr.repository_id,
-     r.name as repo_name, r.label as repo_label, r.dtds as repo_dtds
-  FROM (core.article a INNER JOIN core.journal_repository jr ON jr.id=a.jrepo_id)
-       INNER JOIN core.repository r ON r.id=jr.id
+
+CREATE VIEW core.vw_article_journal AS
+  SELECT a.*, jr.issnl, jr.repository_id
+  FROM core.article a INNER JOIN core.journal_repository jr ON jr.id=a.jrepo_id
 ;
 
+
+CREATE VIEW core.vw_article_journal_repo AS
+  SELECT a.*, r.name as repo_name, r.label as repo_label, r.dtds as repo_dtds
+  FROM core.vw_article_journal a INNER JOIN core.repository r  ON r.id=a.repository_id
+;
+
+-- old lixo CREATE VIEW core.vw_article_journal_repo AS ... MUDOU, revisar.
 
 
 -------------
