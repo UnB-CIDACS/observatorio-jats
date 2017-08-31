@@ -24,6 +24,9 @@ wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/families
 # tmpcsv_licenses
 wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/licenses.csv
 
+# tmpcsv_license_urls
+wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/license_urls.csv
+
 # tmpcsv_implieds
 wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/implieds.csv
 
