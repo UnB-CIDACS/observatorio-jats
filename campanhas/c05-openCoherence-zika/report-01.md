@@ -11,6 +11,8 @@ Na base de dados foram conseguidos por download (via API do PMC) 2405 artigos em
 * `n_useful1=2032` (84,5% de n_arts), contagem de  *`has_body` and `has_permiss`*
 * `n_hasRefs=1778` (73,9% de n_arts)
 * `n_useful2=1667` (69,3% de n_arts), contagem de  *`hasRefs` and `useful1`*
+* `n_isValid=1940` (80,7% de n_arts)
+* `n_useful3=1444` (60,0% de n_arts), contagem de  *`isValid` and `useful2`*
 
 ```
 SELECT count(*) as n_jous from core.journal_repository; -- 14107 universo de issn's catalogado
@@ -24,15 +26,12 @@ SELECT count(*) as "n_hasRefs"   FROM kx.vw_article_metas1_sql WHERE n_refs>1; -
 SELECT count(*) as n_useful2 FROM kx.vw_article_metas1_sql
 WHERE has_body and has_permiss and n_refs>1;--   1667
 
-CREATE VIEW kx.c05_issn_count1 AS
- SELECT issn.cast(issnl) as "ISSN-L",
-        COUNT(*) as n_arts,
-        SUM((has_body and has_permiss and n_refs>1)::int) n_usefull2
- FROM  kx.vw_article_metas1_sql
- GROUP BY 1
- ORDER BY 3 desc, 1
-;
-COPY (SELECT * FROM kx.c05_issn_count1) TO '/tmp/c05_issn_count1.csv' DELIMITER ',' CSV HEADER;
+SELECT count(*) as n_isValid FROM kx.vw_article_metas1_sql
+WHERE article_type IN ('research-article', 'review-article', 'brief-report','case-report');--   1940
+
+SELECT count(*) as n_useful3 FROM kx.vw_article_metas1_sql
+WHERE has_body and has_permiss and n_refs>1 and
+      article_type IN ('research-article', 'review-article', 'brief-report','case-report');--   1444
 
 -- -- -- --
 SELECT count(*) "n_hasLicense"

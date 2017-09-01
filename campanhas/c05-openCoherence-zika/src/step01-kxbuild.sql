@@ -3,7 +3,10 @@
 CREATE VIEW kx.c05_issn_count1 AS
  SELECT issn.cast(k.issnl) as issnl,   -- 1
         COUNT(*) as n_arts,            -- 2
-        SUM((k.has_body and k.has_permiss and k.n_refs>1)::int) n_usefull2,  -- 4
+        SUM((
+          k.has_body and k.has_permiss and k.n_refs>1
+          and article_type IN ('research-article', 'review-article', 'brief-report','case-report')
+          )::int) n_usefull2,  -- 4
         trim(substr(j.publisher, 1, position(':' in j.publisher)),' :') as publisher_loc,
         j.title   -- 5
  FROM  kx.vw_article_metas1_sql k

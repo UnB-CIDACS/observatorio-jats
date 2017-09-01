@@ -13,6 +13,8 @@ CREATE VIEW kx.vw_article_metas1 AS
    -- substituir por função que captura direto todos os Xpaths pro JSON. Vantagem aqui pode ser otimização
    -- interna do PostgreSQL que criaria o DOM uma vez só para todos... Por ser cache não apita muito.
    (xpath('count(//article)', content))[1]::text::integer 		as n_articles,
+   (xpath('//article/@article-type', content))[1]::text as article_type,
+   (xpath('//article/front/article-meta/article-id[@pub-id-type="doi"]/text()', content))[1]::text as doi,
    (xpath('//article/front//pub-date/year/text()', content))[1]::text::integer as year,
    trim((xpath('//article/front//volume/text()', content))[1]::text) 	as volume,
    trim((xpath('//article/front//issue/text()', content))[1]::text) 	as issue,
@@ -25,14 +27,16 @@ CREATE VIEW kx.vw_article_metas1 AS
    (xpath('count(//article/body//fig)', content))[1]::text::integer 	as n_bfigs,
    (xpath('count(//article/back/ref-list/ref)', content))[1]::text::integer as n_refs,
    char_length(content::text)                                 		as nchars_xml,
-   char_length(  array_to_string( (xpath('//article//text()', content))::text[] ,'')  )  as nchars_txt
+   char_length(  array_to_string( (xpath('//article//text()', content))::text[] ,'')  )  as nchars_txt,
+   (xpath('//permissions/license/@n:href', content,'{{n,http://www.w3.org/1999/xlink}}'))[1]::text as license_url
   FROM core.article
 ;
-
 
 CREATE VIEW kx.vw_article_metas1_sql AS
    SELECT *,
     (kx->>'n_articles')::int as n_articles,
+    (kx->>'article_type')::text as article_type,
+    (kx->>'doi')::text as doi,
     (kx->>'year')::int as year,
     (kx->>'volume')::text as volume,
     lib.lpad0((kx->>'issue')::text) as issue,
@@ -45,7 +49,8 @@ CREATE VIEW kx.vw_article_metas1_sql AS
     (kx->>'n_refs')::int as n_refs,
     (kx->>'n_bfigs')::int as n_bfigs,
     (kx->>'nchars_txt')::int as nchars_txt,
-    (kx->>'nchars_xml')::int as nchars_xml
+    (kx->>'nchars_xml')::int as nchars_xml,
+    (kx->>'license_url')::text as license_url
    FROM core.vw_article_journal_repo --core.article
 ;
 
