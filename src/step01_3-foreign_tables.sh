@@ -34,14 +34,19 @@ wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/license_
 # tmpcsv_implieds
 wget -c https://raw.githubusercontent.com/ppKrauss/licenses/master/data/implieds.csv
 
-# tmpcsv__dftlic_sciAuthorities
+# tmpcsv_dftlic_sciAuthorities
 wget -c https://raw.githubusercontent.com/ppKrauss/openCoherence/master/data/samples/sciDocs/dftLicences-sciAuthorities.csv
 
-# tmpcsv__sciRepos
+# tmpcsv_sciRepos
 wget -c https://raw.githubusercontent.com/ppKrauss/openCoherence/master/data/sciRepos.csv
 
-# tmpcsv__xpathTransducers
+# tmpcsv_xpathTransducers
 wget -c https://raw.githubusercontent.com/ppKrauss/openCoherence/master/data/xpathTransducers.csv
+
+## medium sized
+
+# tmpcsv_world_cities
+wget -c https://raw.githubusercontent.com/datasets/world-cities/master/data/world-cities.csv
 
 ## bigdata
 

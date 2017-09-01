@@ -7,7 +7,7 @@
 include('conf.php');
 
 $url_base = 'http://xissn.worldcat.org/webservices/xid/issn/_ISSN_?format=json';
-
+// worldcat não é completo mas é o que temos, resto obter dos artigos.
 $pdo = new PDO(PG_CONSTR_OBSJATS, PG_DFT_USER, PG_DFT_PW);
 
 $meta = ['issnl', 'issn_ref', 'publisher', 'form','title', 'rssurl', 'peerreview'];

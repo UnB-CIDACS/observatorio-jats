@@ -200,3 +200,14 @@ CREATE FOREIGN TABLE tmpcsv_doaj (
 ) SERVER csv_files OPTIONS (
     filename '/tmp/obsjats/doaj.csv',  format 'csv',  header 'true'
 );
+
+/**
+ * Main cities of the world.
+ * @see https://github.com/datasets/world-cities/blob/master/data/world-cities.csv
+ * @see resolução das cidades (publisher_loc ou affiliation) em países.
+ */
+CREATE FOREIGN TABLE tmpcsv_world_cities (
+    name text, country text, subcountry text, geonameid int
+) SERVER csv_files OPTIONS (
+    filename '/tmp/obsjats/world-cities.csv',  format 'csv',  header 'true'
+);

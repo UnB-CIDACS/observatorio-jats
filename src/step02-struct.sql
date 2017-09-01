@@ -15,7 +15,7 @@ CREATE TABLE core.repository (
   info jsonb,
   UNIQUE (name),
   UNIQUE (label),
-  UNIQUE (url)	
+  UNIQUE (url)
 );
 
 CREATE TABLE core.journal (
@@ -28,6 +28,7 @@ CREATE TABLE core.journal (
   kx   JSONb,  -- cache
   UNIQUE(country,abbrev)
 );
+
 
 CREATE TABLE core.journal_repository (
    --
@@ -71,15 +72,37 @@ CREATE TABLE core.article_prepare (
   UNIQUE(jrepo_id,uri,dtd) -- only one dtd per article.
 );
 
+-- -- -- new in v0.2
+
+CREATE TABLE core.campaign (  -- carregar de campanha.csv
+  id integer NOT NULL PRIMARY KEY, -- for 'c01', 'c02' etc.
+  label text NOT NULL CHECK(label>''), -- filename complement
+  kx   JSONb,   -- all info from README!
+  UNIQUE(label)
+);
+
+
+CREATE TABLE core.article_campaign (
+  id_article int NOT NULL REFERENCES core.article(id),
+  id_campaign int NOT NULL REFERENCES core.campaign(id),
+  info JSONb, -- for special cases
+  UNIQUE(id_article,id_campaign)
+);
+
+
 -- -- -- --
 -- Standard VIEWs
-
 
 CREATE VIEW core.vw_article_journal AS
   SELECT a.*, jr.issnl, jr.repository_id
   FROM core.article a INNER JOIN core.journal_repository jr ON jr.id=a.jrepo_id
 ;
 
+CREATE VIEW core.vw_journal_campaign AS  -- MATERIALIZED
+   SELECT aj.issnl, ac.id_campaign, count(*) as n
+   FROM core.vw_article_journal aj INNER JOIN core.article_campaign ac ON aj.id=ac.id_article
+   GROUP BY 1,2
+;
 
 CREATE VIEW core.vw_article_journal_repo AS
   SELECT a.*, r.name as repo_name, r.label as repo_label, r.dtds as repo_dtds
@@ -97,7 +120,7 @@ CREATE or replace FUNCTION core.insert_article_byjou(
  p_uri text,
  p_content XML
 ) RETURNS int AS $f$
-  INSERT INTO core.article (jrepo_id,uri,content) 
+  INSERT INTO core.article (jrepo_id,uri,content)
   VALUES($1, $2,  $3 ) RETURNING id
   ;
 $f$ LANGUAGE SQL;
@@ -105,7 +128,7 @@ $f$ LANGUAGE SQL;
 
 CREATE or replace FUNCTION core.get_issn(xml) RETURNS int AS $f$
   SELECT issn.cast( trim((xpath(
-	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()', 
+	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()',
 	$1
 	))[1]::text) );
 $f$ LANGUAGE SQL IMMUTABLE;
@@ -127,8 +150,7 @@ $f$ LANGUAGE SQL;
 
 CREATE or replace FUNCTION core.get_issn(xml) RETURNS int AS $f$
   SELECT issn.cast( trim((xpath(
-	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()', 
+	'//article/front/journal-meta/issn/text() | //article/front/journal-meta/issn-l/text()',
 	$1
 	))[1]::text) );
 $f$ LANGUAGE SQL IMMUTABLE;
-
