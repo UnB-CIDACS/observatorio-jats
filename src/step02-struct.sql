@@ -8,15 +8,26 @@ CREATE SCHEMA core;
 CREATE TABLE core.repository (
   -- A digital repository of JATS, like PubMed Central or SciELO.
   id    integer NOT NULL PRIMARY KEY,
-  name  text   NOT NULL,
-  label text   NOT NULL, -- lower case ASCII short-name, no spaces.
+  name  text   NOT NULL, -- full name
+  label text   NOT NULL, -- abbrev, with lower case ASCII short-name, no spaces.
   url   text,  -- official URL (as Wikipedia)
   dtds  text[],
   info jsonb,
   UNIQUE (name),
-  UNIQUE (label)
+  UNIQUE (label),
+  UNIQUE (url)	
 );
 
+CREATE TABLE core.journal (
+  -- "In use" journal... Need 1 or more articles in the database. Delete if no one.
+  issn integer NOT NULL PRIMARY KEY,
+  country text NOT NULL, -- 2-letter country code (but preffer cityes)
+  name text,   -- full name
+  abbrev text, -- like label, but an "official abbreviation"
+  info JSONb,  -- all other information, like other issns, publisher, country of the publisher, languages.
+  kx   JSONb,  -- cache
+  UNIQUE(country,abbrev)
+);
 
 CREATE TABLE core.journal_repository (
    --
@@ -37,17 +48,6 @@ CREATE TABLE core.dtd (
   info JSONb, -- additional information as full-name, dtd-URL, xml-schema-url, authority-url, etc.
   kx   JSONb,  -- cache with stats, etc.
   UNIQUE(label)
-);
-
-CREATE TABLE core.journal (
-  -- "In use" journal, to relate its articles. Need 1 or more articles in the database. Delete if no one.
-  issn integer NOT NULL PRIMARY KEY,
-  country text NOT NULL, -- 2-letter country code
-  name text,   -- full name
-  abbrev text, -- like label, but an "official abbreviation"
-  info JSONb,  -- all other information, like other issns, publisher, country of the publisher, languages.
-  kx   JSONb,  -- cache
-  UNIQUE(country,abbrev)
 );
 
 CREATE TABLE core.article (
