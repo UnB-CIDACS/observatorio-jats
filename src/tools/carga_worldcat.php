@@ -22,30 +22,3 @@ for ($i=0; $pmid = fgets(STDIN); $i=1)  if ($i) {
 	$meta = [ $issn, $d['issn'], $d['publisher'], $d['form'], $d['title'], $d['rssurl'], $d['peerreview'] ];
 	fputcsv(STDOUT, $meta);
 }
-
-/*
-	CREATE TABLE core.journal (
-	  -- "In use" journal, to relate its articles. Need 1 or more articles in the database. Delete if no one.
-	  issn integer NOT NULL PRIMARY KEY,
-	  country text NOT NULL, -- 2-letter country code
-	  name text,   -- full name
-	  abbrev text, -- like label, but an "official abbreviation"
-	  info JSONb,  -- all other information, like other issns, publisher, country of the publisher, languages.
-	  kx   JSONb,  -- cache
-	  UNIQUE(country,abbrev)
-	);
-
-
-	create view kx.journal_current_issn as 
-	  select distinct issn.cast(issnl) as "ISSN-L" 
-	  from core.vw_article_journal
-	;
-
-	COPY (SELECT * from kx.journal_current_issn) TO '/tmp/issn_using.csv' DELIMITER ',' CSV HEADER;
-
-
-
-*/
-
-
-
