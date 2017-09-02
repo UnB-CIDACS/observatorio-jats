@@ -27,28 +27,6 @@ Com relação a unicidade dos artigos,
 
 Portanto  é sugerido o controle via DOI no presente levantamento.
 
-Quanto à filtragem `n_isValid` houve certa arbitrariedade na eleição do que seriam tipos de documento válidos:
-
-    article_type    |  n   
---------------------|------
-research-article    | 1543
-review-article      |  264
-editorial           |  123
-brief-report        |   97
-letter              |   79
-other               |   61
-news                |   43
-article-commentary  |   43
-case-report         |   36
-abstract            |   29
-discussion          |   25
-in-brief            |   20
-correction          |   16
-meeting-report      |    9
-book-review         |    5
-
-A restrição de *research-article, review-article, brief-report* e _case-report_ resultou no total de 1940.
-
 ```sql
 SELECT count(*) as n_jous from core.journal_repository; -- 14107 universo de issn's catalogado
 
@@ -115,6 +93,27 @@ Quando são impostas todas as restrições (vide definição de `n_useful3`), al
 
 Apesar da cobertura inicial ter apresentado 516 revistas diferentes, após a filtragem apenas 310 revistas apresentaram um ou mais artigos.
 
+Quanto à filtragem `n_isValid` houve certa arbitrariedade na eleição do que seriam tipos de documento válidos:
+
+article_type    |  n   
+----------------|------
+research-article    | 1543
+review-article      |  264
+editorial           |  123
+brief-report        |   97
+letter              |   79
+other               |   61
+news                |   43
+article-commentary  |   43
+case-report         |   36
+abstract            |   29
+discussion          |   25
+in-brief            |   20
+correction          |   16
+meeting-report      |    9
+book-review         |    5
+
+A restrição de *research-article, review-article, brief-report* e _case-report_ resultou no total de 1940.
 ## Tabela de metadados
 
 Para maiores detalhes ver implementação da SQL-VIEW `kx.vw_article_metas1` em [step03-kxbuild.sql](../../src/step03-kxbuild.sql).
