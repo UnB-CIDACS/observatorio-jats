@@ -76,16 +76,16 @@ WHERE article_license.name=l.name
 -- PART2: insert as text-equivalence
 
 INSERT INTO kx.article_license (id,license_text,url,family,names)
-  SELECT a.id,
-        lib.trim2( xpath('//article/front//license//text()', content) ) as license_text,
+  SELECT a.id, license_text,
          'url'::text as match_mode, ''::text as name, ''::text as family,
          array_agg(DISTINCT lu.name) as names
   FROM kx.c05_article a INNER JOIN
-       kx.c05_licenses_used lu ON lower(lu."License")=lower()
+       tmpcsv_licenseText_used lu ON lower(lu."License")=lower(a.license_text)
   WHERE a.license_url IS NULL OR a.id IN (SELECT id WHERE kx.article_license family='')
   GROUP BY 1,2
   ORDER BY 1
 ; -- 932
+
 
 
   n_reuse,famyly,family_or_license,embargo_months,contradiction,dependences,License,notes

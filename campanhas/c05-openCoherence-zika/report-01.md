@@ -21,6 +21,34 @@ Na base de dados foram conseguidos por download (via API do PMC) 2405 artigos em
 * `n_isValid=1940` (80,7% de n_arts)
 * `n_useful3=1444` (60,0% de n_arts), contagem de  *`isValid` and `useful2`*
 
+Com relação a unicidade dos artigos,
+* `n_doi=2229 =n_uniq_doi` (% de n_arts)
+* `n_no_doi=176`  (% de n_arts)  podem ser controlados pelo PMC-ID ou outro recurso.
+
+Portanto  é sugerido o controle via DOI no presente levantamento.
+
+Quanto à filtragem `n_isValid` houve certa arbitrariedade na eleição do que seriam tipos de documento válidos:
+
+    article_type    |  n   
+--------------------|------
+research-article    | 1543
+review-article      |  264
+editorial           |  123
+brief-report        |   97
+letter              |   79
+other               |   61
+news                |   43
+article-commentary  |   43
+case-report         |   36
+abstract            |   29
+discussion          |   25
+in-brief            |   20
+correction          |   16
+meeting-report      |    9
+book-review         |    5
+
+A restrição de *research-article, review-article, brief-report* e _case-report_ resultou no total de 1940.
+
 ```sql
 SELECT count(*) as n_jous from core.journal_repository; -- 14107 universo de issn's catalogado
 
@@ -48,7 +76,12 @@ WHERE xmlexists('//article/front//license' PASSING BY REF content); -- 1811
 SELECT count(*) "n_hasCopyright"
 FROM core.article
 WHERE xmlexists('//article/front//copyright-statement' PASSING BY REF content); -- 1856
+
+SELECT count(*) as n_arts,  count(doi) as n_doi,
+       count(distinct doi) n_uniq_doi, sum((doi is null)::int) no_doi
+FROM kx.vw_article_metas1_sql; -- 2405 |       2229|  2229 |    176
 ```
+
 Demais consultas e respectivos arquivos CSV ver ...
 
 ## Refs apoio
@@ -62,7 +95,7 @@ Dump dos _datasets_ em [c05-openCoherence-zika/data](https://github.com/UnB-CIDA
 
 Revistas com mais de 30 artigos, totalizando ~1/3 do universo de `n_arts=2405`.
 
-ISSN-L    | `n_arts` | `n_useful3` | Nome da revista
+[ISSN-L](https://en.wikipedia.org/wiki/International_Standard_Serial_Number#Linking_ISSN)    | `n_arts` | `n_useful3` | Nome da revista
 ----------|-----|---------------|---------
 1935-2727 | 209 | 183 | PLoS neglected tropical diseases
 2045-2322 | 127 | 125 | Scientific reports
