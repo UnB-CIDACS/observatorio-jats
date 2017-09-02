@@ -96,11 +96,13 @@ CREATE FOREIGN TABLE tmpcsv_licenses (
  */
 CREATE FOREIGN TABLE tmpcsv_license_urls (
 	name text,
+	interpretation text,
 	url_type text,
 	lang text,
 	is_trans text,
 	is_cool text,
-	url text
+	url text,
+	prefixes text
 ) SERVER csv_files OPTIONS (
     filename '/tmp/obsjats/license_urls.csv',  format 'csv',  header 'true'
 );

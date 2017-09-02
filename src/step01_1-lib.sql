@@ -16,6 +16,10 @@ CREATE or replace FUNCTION lib.json_array_castext(json) RETURNS text[] AS $f$
   FROM json_array_elements_text($1) t(x);
 $f$ LANGUAGE sql IMMUTABLE;
 
+CREATE or replace FUNCTION lib.url_tocmp(url text) RETURNS text AS $f$
+  SELECT lower(trim( regexp_replace($1,'^https?://(www.)?','') , '/ '));
+$f$ LANGUAGE sql IMMUTABLE;
+
 
 -- used here at Observatorio:
 

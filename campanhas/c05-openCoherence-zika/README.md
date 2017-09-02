@@ -1,7 +1,7 @@
 ---
 id: c005
 type: apresentação de campanha
-version: 0.0.1
+version: 0.2.0
 version_status: DRAFT
 endorsed_n: 0
 endorsed_status: no endorsement
@@ -16,8 +16,8 @@ layout: page
 
 ## CURADORES
 
-* Peter Krauss ([ppkrauss](https://github.com/ppkrauss) - Open Knowledge Brasil)
 * Ricardo Barros Sampaio (rsampaio.br@gmail.com - UnB)
+* Peter Krauss ([ppkrauss](https://github.com/ppkrauss) - Open Knowledge Brasil)
 * Jorge H. C. Fernandes (jhcf@unb.br - UnB)
 * ... estamos aguardando a sua participação!  
 

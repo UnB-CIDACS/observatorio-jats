@@ -1,4 +1,13 @@
 
+
+CREATE VIEW kx.c05_article AS
+  SELECT *
+  FROM kx.vw_article_metas1_sql
+  WHERE has_body and has_permiss and n_refs>1
+      and article_type IN ('research-article', 'review-article', 'brief-report','case-report')
+; -- 1444 com has_permiss, 1510 sem.
+
+
 -- DROP VIEW kx.c05_issn_count1;
 CREATE VIEW kx.c05_issn_count1 AS
  SELECT issn.cast(k.issnl) as issnl,   -- 1
