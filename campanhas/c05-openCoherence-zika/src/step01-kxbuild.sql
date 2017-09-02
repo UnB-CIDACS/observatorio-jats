@@ -1,7 +1,7 @@
 
 
 CREATE VIEW kx.c05_article AS
-  SELECT *
+  SELECT *,  lib.trim2( xpath('//article/front//license//text()', content) ) as license_text
   FROM kx.vw_article_metas1_sql
   WHERE has_body and has_permiss and n_refs>1
       and article_type IN ('research-article', 'review-article', 'brief-report','case-report')

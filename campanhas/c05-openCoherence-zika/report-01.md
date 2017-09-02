@@ -86,15 +86,15 @@ Apesar da cobertura inicial ter apresentado 516 revistas diferentes, após a fil
 
 Para maiores detalhes ver implementação da SQL-VIEW `kx.vw_article_metas1` em [step03-kxbuild.sql](../../src/step03-kxbuild.sql).
 
-nome        | Xpath
-------------|-----------
-n_articles  | `count(//article)'
-article_type| `//article/@article-type`
+nome        | [XPath](https://en.wikipedia.org/wiki/XPath) | Notas
+------------|-----------|--------
+n_articles  | `count(//article)` |validador, esperado sempre 1
+article_type| `//article/@article-type`| foco em "research-article" e similares
 doi         | `//article/front/article-meta/article-id[@pub-id-type="doi"]/text()`
-year        | `//article/front//pub-date/year/text()`
+year        | `//article/front//pub-date/year/text()` | eleição arbitrária do primeiro
 volume      | `//article/front//volume/text()`
-issue       | `//article/front//issue/text()`
-title       | `//article/front//article-title//text()`
+issue       | `//article/front//issue/text()`  | não-obrigatório
+title       | `//article/front//article-title//text()` | obrigatório
 ...         | ...
 
 

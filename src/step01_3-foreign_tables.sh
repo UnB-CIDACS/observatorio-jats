@@ -18,6 +18,7 @@ else
   mkdir /tmp/obsjats
 fi
 cp data/caches/issn_using_meta.csv /tmp/obsjats
+cp campanhas/c05-openCoherence-zika/data/licenses_used.csv /tmp/obsjats
 cd /tmp/obsjats
 
 # # # # # # STEP-1_3.2

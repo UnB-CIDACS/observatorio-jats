@@ -60,6 +60,17 @@ CREATE FOREIGN TABLE tmpcsv_families (
 );
 
 /**
+ * License used in the tag-license of articles, most frequent text-templates.
+ * @see campanhas/c05-openCoherence-zika/data/licenses_used.csv
+ */
+CREATE FOREIGN TABLE tmpcsv_licenseText_used (
+	n_reuse text,famyly text,family_or_license text,embargo_months text,
+	contradiction text,dependences text,"License" text,notes text
+) SERVER csv_files OPTIONS (
+    filename '/tmp/obsjats/licenses_used.csv',  format 'csv',  header 'true'
+);
+
+/**
  * Licenses.
  * @see https://github.com/ppKrauss/licenses/blob/master/data/licenses.csv
  */
