@@ -86,14 +86,6 @@ INSERT INTO kx.article_license (id,license_text,url,family,names)
   ORDER BY 1
 ; -- 932
 
-
-
-  n_reuse,famyly,family_or_license,embargo_months,contradiction,dependences,License,notes
-  FROM kx.c05_licenses_used inner JOIN tmpcsv_licenseText_used
-
-
-
-
 ---- --- REPORTS
 
 SELECT *, round(100*n/932.0) as perc FROM (
@@ -154,8 +146,10 @@ doi                          |                         license_url
 10.3389/fimmu.2011.00048     | http://www.frontiersin.org/licenseagreement
 10.3389/fmicb.2012.00204     | http://www.frontiersin.org/licenseagreement
 
-(6 rows)
-
+```sql
+SELECT doi, license_url FROM kx.vw_c05_article  
+WHERE  license_url is not  null and kx.license_url2name(license_url) is null
+```
 
 ### Declarações de licença em conflito
 
