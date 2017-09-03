@@ -140,3 +140,32 @@ A resolução de família é dada pelo _dataset_ [ppKrauss/licenses/data/license
 
 ## Resultados
 ...
+
+### Licensas não-resolvidas
+Ainda pendentes para verificação mais apurada, algumas licenças e URLs de licença muito específicas e sem impacto na amostragem.
+
+São elas ...
+
+### Declarações de licença em conflito
+
+Um total de 14 artigos apresentaram algum tipo de conflito por exemplo entre o texto da licença e a URL associada. Abaixo cada um dos casos e inferências realizadas. Em alguns casos o conflito se deve também à ambiguidade do texto.
+
+n_arts |   hfams    | hinterpretations | url_families |      url_names  | license_text_urls<br/> license_text        
+-------|------------|------------------|--------------|-----------------|---------------------------------
+1 | {by-nc}    | {cc-by-nc-2.5}   | {by}         | {CC-BY-2.5}                           | {creativecommons.org/licenses/by/2.5}                             <br/> re-use of this article is permitted in accordance with the creative commons deed, attribution 2.5, which does not permit commercial exploitation.
+1 | {by-nc}    | {cc-by-nc-?}     | {by}         | {CC-BY-2.5}                           | {creativecommons.org/licenses/by/2.5}                                 <br/> this is an open access article distributed under the creative commons attribution license, which permits unrestricted non-commercial use, distribution, and reproduction in any medium, provided the original work is properly cited.
+1 | {by}       | {cc-by}          | {by}         | {CC-BY-3.0, CC-BY-4.0}                 | {creativecommons.org/licenses/by/3.0, creativecommons.org/licenses/by/4.0}           <br/> this is an open access article distributed under the creative commons attribution license, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+1 | {by}       | {cc-by}          | {by,by-nc}   | {CC-BY-4.0, CC-BY-NC-4.0}              | {creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-nc/4.0}              <br/> this is an open-access article distributed under the terms of the creative commons attribution license
+1 | {by}       | {cc-by}          | {by}         | {CC-BY-3.0, CC-BY-4.0}                 | {creativecommons.org/licenses/by/3.0, creativecommons.org/licenses/by/4.0}          <br/>this is an open-access article distributed under the terms of the creative commons attribution license (cc by). the use, distribution or reproduction in other forums is permitted, provided the original author(s) or licensor are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. no use, distribution or reproduction is permitted which does not comply with these terms.
+1 | {by-nc}    | {cc-by-nc-4}     | {by}         | {CC-BY-4.0}                           | {creativecommons.org/licenses/by/4.0}                          <br/>this is an open access article distributed under the terms of the creative commons attribution license (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+1 | {by}       | {cc-by}          | {by}         | {CC-BY-3.0, CC-BY-4.0}                 | {creativecommons.org/licenses/by/3.0,creativecommons.org/licenses/by/4.0}             <br/>this is an open access article distributed under the terms of the creative commons attribution license, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+1 | {by}       | {cc-by}          | {by}         | {CC-BY-3.0, CC-BY-4.0}                 | {creativecommons.org/licenses/by/3.0,creativecommons.org/licenses/by/4.0}              <br/>this is an open-access article distributed under the terms of the creative commons attribution license, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+2 | {by}       | {cc-by}          | {by}         | {CC-BY-3.0, CC-BY-4.0}                 | {creativecommons.org/licenses/by/3.0,creativecommons.org/licenses/by/4.0}               <br/> this is an open-access article distributed under the terms of the creative commons attribution license, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+1 | {by-nc}    | {cc-by-nc}       | {by,by-nc}   | {CC-BY-4.0, CC-BY-NC-3.0, CC-BY-NC-4.0} | {creativecommons.org/licenses/by/4.0,creativecommons.org/licenses/by-nc/3.0,creativecommons.org/licenses/by-nc/4.0} <br/> this is an open access article distributed under the terms of the creative commons attribution non-commercial license, which permits unrestricted non-commercial use, distribution, and reproduction in any medium, provided the original work is properly cited.
+1 | {by-nc-nd} | {cc-by-nc-nd}    | {by}         | {CC-BY-3.0}                           | {creativecommons.org/licenses/by/3.0}                                        <br/> this is an open access article distributed under the terms of the creative commons attribution non-commercial no derivatives license, which permits for noncommercial use, distribution, and reproduction in any digital medium, provided the original work is properly cited and is not altered in any way.
+1 | {by-nc}    | {cc-by-nc-4}     | {by}         | {CC-BY-4.0}                           | {creativecommons.org/licenses/by/4.0/legalcode}                                   <br/>this is an open access article licensed under the terms of the creative commons attribution-non-commercial 4.0 international public license (cc by-nc 4.0) (https://creativecommons.org/licenses/by-nc/4.0/legalcode), which permits unrestricted, non-commercial use, distribution and reproduction in any medium, provided the work is properly cited.
+1 | {nc-nd}    | {by-nc-nd-4}     | {by-nc-nd}   | {CC-BY-NC-ND-4.0}                     | {creativecommons.org/licenses/by-nc-nd/4.0} <br/>  this is an open access article under the cc by-nc-nd license (http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+
+
+
