@@ -142,9 +142,20 @@ A resolução de família é dada pelo _dataset_ [ppKrauss/licenses/data/license
 ...
 
 ### Licensas não-resolvidas
-Ainda pendentes para verificação mais apurada, algumas licenças e URLs de licença muito específicas e sem impacto na amostragem.
 
-São elas ...
+Ainda pendentes para verificação mais apurada, algumas licenças e URLs de licença muito específicas e sem impacto na amostragem. 6 artigos apresentaram URL de licensa desconhecida, e 
+
+doi                          |                         license_url                         
+-----------------------------|-------------------------------------------------------------
+10.3762/bjoc.13.28           | http://www.beilstein-journals.org/bjoc
+10.1080/17441692.2012.699713 | http://www.informaworld.com/mpp/uploads/iopenaccess_tcs.pdf
+10.1080/17441692.2012.699536 | http://www.informaworld.com/mpp/uploads/iopenaccess_tcs.pdf
+10.3389/fmicb.2012.00124     | http://www.frontiersin.org/licenseagreement
+10.3389/fimmu.2011.00048     | http://www.frontiersin.org/licenseagreement
+10.3389/fmicb.2012.00204     | http://www.frontiersin.org/licenseagreement
+
+(6 rows)
+
 
 ### Declarações de licença em conflito
 
