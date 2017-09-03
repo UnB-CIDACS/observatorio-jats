@@ -36,55 +36,21 @@ SELECT count(*) as n_hasLicUrl FROM kx.vw_article_metas1_sql WHERE license_url i
 
 Uma vez concluído o reconhecimento das licensas, um relatório de frequência e confiabilidade das resoluções é emitido.
 
+Resultados da avaliação:
+
+family  |  n_arts   | perc 
+-----------|------|------
+by       | 1151 |   86%
+by-nc    |   78 |    6%
+cc0      |   50 |    4%
+by-nc-nd |   35 |    3%
+by-nc-sa |   16 |    1%
+by-x     |   12 |    1%
+ 
+tot 1342 artigos
+
+
 ```sql
--- resolução da licensa fornecida diretamente pela sua URL
-SELECT count(*) as n
-FROM kx.c05_article
-WHERE license_url IS NOT NULL AND lib.url_tocmp(license_url) IN (
-    SELECT lower(url) FROM tmpcsv_license_urls
-); -- 932 de 1444
-
-
--- -- -- -- -- -- -- -- --
--- -- -- PART1, insert only URLs
-
--- drop TABLE kx.article_license ;
-CREATE TABLE kx.article_license AS
-  SELECT a.id, a.license_text,
-         'url'::text as match_mode, ''::text as name, ''::text as family,
-         array_agg(DISTINCT lu.name) as names
-  FROM kx.c05_article a INNER JOIN
-       tmpcsv_license_urls lu ON lower(lu.url)=lib.url_tocmp(a.license_url)
-  WHERE license_url IS NOT NULL
-  GROUP BY 1,2
-  ORDER BY 1
-; -- 932
-
--- check no error by select * from kx.article_license where array_length(name,1)>1;
-UPDATE kx.article_license
-SET  name=names[1]
-WHERE array_length(names,1)=1
-; -- 932  (same number is good)
-
-UPDATE kx.article_license
-SET  family=l.family
-FROM tmpcsv_licenses l
-WHERE article_license.name=l.name
-; -- 932.. check errors on diff number  SELECT * from kx.article_license where family='';
-
--- -- -- -- -- --
--- PART2: insert as text-equivalence
-
-INSERT INTO kx.article_license (id,license_text,url,family,names)
-  SELECT a.id, license_text,
-         'url'::text as match_mode, ''::text as name, ''::text as family,
-         array_agg(DISTINCT lu.name) as names
-  FROM kx.c05_article a INNER JOIN
-       tmpcsv_licenseText_used lu ON lower(lu."License")=lower(a.license_text)
-  WHERE a.license_url IS NULL OR a.id IN (SELECT id WHERE kx.article_license family='')
-  GROUP BY 1,2
-  ORDER BY 1
-; -- 932
 
 ---- --- REPORTS
 
@@ -124,6 +90,25 @@ CC-BY-2.5       |   4 |    0
 CC-PDM-1.0      |   3 |    0
 CC-BY-NC-SA-4.0 |   2 |    0
 CC0-GOV-US      |   1 |    0
+
+
+Entre os 102 artigos que não obtiveram inferência de família, apresentaram a seguinte distribuição por revista, entre 51 revistas:
+
+ ISSN-L   | n_arts 
+-----------|--------
+2214-2509 |     10
+2352-3964 |     10
+0028-0836 |      8
+0305-1048 |      4
+1932-6203 |      4
+2213-6711 |      4
+2352-7714 |      4
+2369-2960 |      4
+2375-2548 |      4
+...  | 3
+...  | 2
+...  | 1
+
 
 ### Reconhecimento da família e cálculos de score
 A resolução de família é dada pelo _dataset_ [ppKrauss/licenses/data/licenses.csv](https://github.com/ppKrauss/licenses/blob/master/data/licenses.csv), e os scores de família por uma tabela similar a [ppKrauss/licenses/data/families.csv](https://github.com/ppKrauss/licenses/blob/master/data/families.csv).  A eleição de scores foi revista em função da ordenação mais praticada atualmente, expressa pelo *"Creative Commons license spectrum"*:

@@ -54,6 +54,7 @@ CREATE VIEW kx.vw_article_metas1_sql AS
    FROM core.vw_article_journal_repo --core.article
 ;
 
+--------
 -- revisar
 CREATE VIEW kx.vw_article_issue AS
   SELECT a.*, m.issnl, m.year, m.volume, m.issue, m.title,
@@ -100,7 +101,7 @@ CREATE VIEW kx.vw_article_issue_count AS
 
 -- -- -- -- --
 -- -- -- -- --
--- Datasets (from OpenCoherence model)
+-- Datasets (from licenses project)
 
 CREATE TABLE kx.families (
   family text NOT NULL PRIMARY KEY,
@@ -111,10 +112,27 @@ CREATE TABLE kx.families (
 CREATE TABLE kx.licenses (
   id_label   text NOT NULL CHECK(lower(id_label)=id_label),
   id_version text DEFAULT '',
-  name   text NOT NULL CHECK(lower(replace(name,' ','-'))=(id_label||CASE WHEN id_version>'' THEN '-'||id_version ELSE '' END)),
+  name   text NOT NULL PRIMARY KEY CHECK(lower(replace(name,' ','-'))=(id_label||CASE WHEN id_version>'' THEN '-'||lower(id_version) ELSE '' END)),
   family text NOT NULL REFERENCES kx.families(family),
   title  text NOT NULL CHECK(trim(title)>''),
   info JSONb,
-  UNIQUE(id_label,id_version),
+  UNIQUE(id_label,id_version), -- name
   UNIQUE(title)
-);
+); -- insert only analysed with family
+
+CREATE TABLE kx.license_url (
+       url text NOT NULL PRIMARY KEY,  -- after lib.url_tocmp() function
+       name text NOT NULL REFERENCES kx.licenses(name),
+       lang text  CHECK(char_length(lang)<6), -- ex. en, pt or pt-BR of original or translated text
+       url_type text,   -- "original", "purl" or "authcopy" (authoritative copy) , purl2, authcopy2, etc.
+       interpretation text NOT NULL, -- trusted or other (non-trusted)
+       info JSONb, --  is_cool , prefixes, is_trans, etc. and URL_sample (with http and upper case parts) 
+       UNIQUE(name,url_type,lang) -- many types and langs are valid
+); -- check if all names in kx.licenses have an (one or more) url_type=original here 
+
+CREATE VIEW kx.vw_license_url AS
+  SELECT u.*,  l.family, l.title, l.id_label, l.id_version, f.scope, f.sort
+  FROM (kx.license_url u INNER JOIN kx.licenses l ON l.name=u.name)
+                 INNER JOIN  kx.families f ON f.family=l.family
+; 
+

@@ -20,7 +20,35 @@ CREATE or replace FUNCTION lib.url_tocmp(url text) RETURNS text AS $f$
   SELECT lower(trim( regexp_replace($1,'^https?://(www.)?','') , '/ '));
 $f$ LANGUAGE sql IMMUTABLE;
 
+--- agg
 
+/**
+ * Custom array_agg() for NOT NULL.
+ * @see  https://stackoverflow.com/a/17303965
+ * @see  http://ejrh.wordpress.com/2011/09/27/denormalisation-aggregate-function-for-postgresql/
+ */
+CREATE OR REPLACE FUNCTION fn_array_agg_notnull (
+    a anyarray
+    , b anyelement
+) RETURNS ANYARRAY
+AS $$
+BEGIN
+    IF b IS NOT NULL THEN
+        a := array_append(a, b);
+    END IF;
+    RETURN a;
+END;
+$$ IMMUTABLE LANGUAGE 'plpgsql';
+
+DROP AGGREGATE  IF EXISTS array_agg_notnull(ANYELEMENT);
+CREATE AGGREGATE array_agg_notnull(ANYELEMENT) (
+    SFUNC = fn_array_agg_notnull,
+    STYPE = ANYARRAY,
+    INITCOND = '{}'
+);
+
+
+---------------
 -- used here at Observatorio:
 
 CREATE or replace FUNCTION lib.lpad0(text) RETURNS  text AS $func$
