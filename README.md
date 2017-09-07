@@ -50,8 +50,11 @@ Os resultados das campanhas observacionais ficam registrados em relatórios... P
 
 ## Organizações que apoiam este projeto
 
+![](https://github.com/UnB-CIDACS/observatorio-jats/raw/master/docs/assets/logos.jpg)
+
 * **FioCruz / CIDACS**: Centro de Integração de Dados de Conhecimentos para Saúde <br/>http://www.cidacs.bahia.fiocruz.br/  <br/>Ver também [observatorio.fiocruz.br](http://observatorio.fiocruz.br/sobre) e [filminho de apresentação](https://www.facebook.com/fiocruzbahia.cidacs/posts/1634297083539026).
 
 * **OKBr**: Open Knowledge do Brasil, através do [@ppkrauss](http://github.com/ppkrauss)<br/>http://ok.org.br <br>https://discuss.ok.org.br/5844
 
 * **UnB**: através dos professores [Jorge H. C. Fernandes](http://www.cic.unb.br/~jhcf/) e [Ricardo B. Sampaio](http://brasilia.academia.edu/RicardoBarrosSampaio).<br/>http://www.unb.br
+
