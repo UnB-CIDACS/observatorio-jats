@@ -33,13 +33,15 @@ Há naturalmente um funil de busca com criteriosa seleção, que envolve o traba
 1. Formação e homologação da curadoria (aprovação de alvo e dos compromissos da equipe);
 2. Planejamento da campanha observacional, e alinhamentos com a equipe de experts (aprovação de calendários e responsabilidades);
 3. Experimentos-piloto e provas de conceito;
-4. Realização da campanha;
+4. Realização da campanha: fica regisrada como relatório de apresentação (exemplos: [c01-consistencia](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c01-consistencia/README.md), [c05-openCoherence-zika](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/README.md)) e relatórios de resultados. 
 5. Revisão final;
-6. Publicação de relatórios.
+6. Revisão e divulgação dos relatórios.
+
+Todos os materiais ficam registrados na [pasta das campanhas](https://github.com/UnB-CIDACS/observatorio-jats/tree/master/campanhas).
 
 ### Relatórios
 
-Os resultados das campanhas observacionais ficam registrados em relatórios... Por hora não temos nenhum para mostrar, aguarde! Ver exemplo em [campanhas/c04-consistencia/report-01.md](campanhas/c04-consistencia/report-01.md).
+Os resultados das campanhas observacionais ficam registrados em relatórios. Exemplos: [c01-consistencia/report-01.md](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c01-consistencia/report-01.md), [c05-openCoherence-zika/report-01.md](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/report-01.md), [c05-openCoherence-zika/report-02.md](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/report-02.md).
 
 ## Documentação
 
