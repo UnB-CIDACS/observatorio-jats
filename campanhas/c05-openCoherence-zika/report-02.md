@@ -1,3 +1,13 @@
+---
+id: c005-r02
+type: relatório
+version: 0.0.7
+version_status: DRAFT
+endorsed_n: 0
+endorsed_status: no endorsement
+layout: page
+---
+
 # Relatório 02 da Campanha C05
 
 *Obtenção das licenças dos artigos e cálculo da OpenCoherence do conjunto*
