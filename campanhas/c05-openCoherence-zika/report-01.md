@@ -1,3 +1,13 @@
+---
+id: c005-r01
+type: relatório
+version: 0.0.6
+version_status: DRAFT
+endorsed_n: 0
+endorsed_status: no endorsement
+layout: page
+---
+
 # Relatório 01 da Campanha C05
 
 *Contagens e avaliação estatística das amostragens*
