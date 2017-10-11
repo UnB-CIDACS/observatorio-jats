@@ -39,12 +39,27 @@ O [projeto](https://github.com/ppKrauss/openCoherence), iniciado com apoio da Op
 
 ### Zika Virus como tema
 
-... Aguardando estudos e justificativas do Ricardo...
+Ao declarar emergência internacional de saúde pública com o surto do vírus Zika, a OMS propiciou o surgimento de um novo momento para a Ciência no campo da saúde, a aceleração da geração de conhecimento para atender a uma epidemia.
+
+Aparentemente essa aceleração garantiu a publicação de conteúdos com licenças abertas, principalmente entre 2016 e 2017; no entanto, essa aceleração, mesmo tendo gerado conteúdos com licenças abertas na maior parte dos casos, não parece ter resultado no mesmo grau de abertura nas dependências dos artigos, principalmente porque o tema recar citação de obras de áreas diferentes, fora desse universo mais aberto e dos efeitos da aceleração. Portanto é esperada a observação de nítida perda de coerência de abertura para as obras sobre Zika deste período.
 
 --------
 
 ## METODOLOGIA
-... Aguardando Ricardo...
+
+O levantamento sistemático requer garantia de .. e .. precisão e completeza (fig).. 
+Resumindo num pass-a-passo
+
+1. Preparo dos critérios e contexto histórico: o termo *Zika virus* se tornou um "padrão *de facto*" para a rotulação do tema, o que permite o uso eficiente de por palavra-chave. Em termos históricos sabe-se que o Zika não era conhecido antes da epidemia deflagrada em 2016, e que sua descoberta não pode ter sido anterior à década de 2000.
+ 
+2. Levantamento do acervo de artigos sobre o tema: busca nas principais fontes de indexação de artigos científicos.
+
+3. Normalização dos identificadores dos artigos (por DOI ou PMCID).
+
+4. ...
+
+6. ... artigos OpenAccess (artigos de revistas que receberam o selo DOAJ) ...
+
 
 ### Levantamento de artigos sobre Zika
 
@@ -53,6 +68,15 @@ A grosso modo o universo foi obtido de uma busca no PMC (link do engine?) com
     "zika" or "ZIKV" or "zikavirus"
 
 que resultou na [listagem `pmc_result-zikaFull-2017-08.csv`](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/data/pmc_result-zikaFull-2017-08.csv) de 2506 artigos.
+
+### Hiopóteses sobre os artigos
+
+* Critério de exclusão para confirmar que o artigo versa sobre Zika: abstract ou palavras-chave fixadas pelo autor devem conter termos-chave.
+ 
+* Critério para confirmação: média de referências por artigo que citam demais artigos do "grupo Zika".
+
+* Efeitos da amostragem: ao reduzir o universo aos artigos OpenAccess, não haveria apenas uma redução no tamanho da amostra, mas também efeitos sobre a distribuição do assunto. Um dos efeitos relavantes e mensuráveis seria a diversidade.  Usando os índices de Pielou para equitativodade e de Simpsom para dominância, pode-se caracterizar com precisão o comportamento médio de amostras aleatórias, e o efeito do filtro OpenAccess. 
+
 
 ### Critérios do acervo JATS
 
@@ -67,6 +91,11 @@ Considera-se amostra o artigo JATS que apresente minimamente:
 ### Cálculo e comparação de índices gerais
 
 ... ver refs e melhoras ...
+
+### Cálculo e comparação de índices gerais
+
+... ver refs e melhoras ...
+
 
 ### Cálculo da OpenCoherece de cada artigo
 
