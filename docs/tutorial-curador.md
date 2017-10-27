@@ -1,9 +1,9 @@
 # Tutorial para o curador
 &nbsp; ![](assets/curadores.png)
 
-Na equipe das campanhas são necessários dois atores, o *curador* e o *expert*. Este tutorial tem como público-alvo **os curadores**. É um complemento do [tutorial do expert](tutorial-expert.md) pois estaremos abordando os mesmos exemplos.
+Na equipe das [campanhas](../campanhas) são necessários dois atores, o *curador* e o *expert*. Este tutorial tem como público-alvo o curador. É um complemento do [tutorial do expert](tutorial-expert.md) pois estaremos abordando os mesmos exemplos.
 
-O objetivo do tutorial é **mostrar passo-a-passo dos levantamentos e os critérios para a interpretação de conjuntos de artigos JATS**. Como pano de fundo vamos supor a [campanha 05 sobre o Zika virus](https://github.com/UnB-CIDACS/observatorio-jats/tree/master/campanhas/c05-openCoherence-zika).
+O objetivo do tutorial é **mostrar passo-a-passo dos levantamentos e os critérios para a interpretação de conjuntos de artigos JATS**. Como pano de fundo vamos supor a [campanha 05 sobre o Zika virus](../campanhas/c05-openCoherence-zika).
 
 ## Passo 1 - Levantamento do universo de artigos
 A pesquisa dos artigos científicos pode fazer uso das mais diversas ferramentas (PubMed, Google Scholar, etc.) visãndo num primeiro momento máxima [_revocação_](https://en.wikipedia.org/wiki/Precision_and_recall). Aos poucos as filtragens de _precisão_  vão fixando o conjunto-universo dos artigos existentes sobre o tema da campanha. Outros elementos metodológicos também podem ser encontrados na  [literatura sobre *revisão sistemática*](https://blog.fastformat.co/revisao-sistematica-da-literatura-o-que-e-como-fazer/).

@@ -44,7 +44,9 @@ Todos os materiais ficam registrados na [pasta das campanhas](https://github.com
 Os resultados das campanhas observacionais ficam registrados em relatórios. Exemplos: [c01-consistencia/report-01.md](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c01-consistencia/report-01.md), [c05-openCoherence-zika/report-01.md](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/report-01.md), [c05-openCoherence-zika/report-02.md](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/report-02.md).
 
 ## Documentação
-
+* Tutoriais:
+  - [Tutorial do curador](docs/tutorial-curador.md)
+  - [Tutorial do expert](docs/tutorial-expert.md)
 * [Instruçoes para instalação](docs/instalacao.md)
 * [Aquitetura e ferramentas](src/README.md).
 * ...

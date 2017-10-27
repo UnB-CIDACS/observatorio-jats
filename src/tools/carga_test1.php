@@ -5,6 +5,13 @@
  */
 
 include('conf.php');
+$here = dirname(__FILE__); // ./src/php
+$conFile = $here.'/../../data/tutorial/conf.json'; // SO TESTE! usar $argv!
+$conf = json_decode(file_get_contents($conFile),true);
+$DB = isset($conf['db'])? trim($conf['db']): '';
+if (!$DB) die("\nSEM DB!\n");
+
+// revisar $pdo = new PDO($DB, PG_DFT_USER, PG_DFT_PW);  // NAO CONECTA!
 $pdo = new PDO(PG_CONSTR_OBSJATS, PG_DFT_USER, PG_DFT_PW);
 
 // conforme indicações de https://www.ncbi.nlm.nih.gov/pmc/tools/get-full-text/
@@ -33,7 +40,3 @@ $ret =         $st->execute(array(
 print "\n\t$ret";
 
 }
-
-
-
-

@@ -1,0 +1,10 @@
+{
+   "db": "postgresql://postgres:postgres@localhost:5432/obsjats",
+   "github.com":{
+        "datasets/country-codes":null,
+        "datasets/world-cities":null,
+        "datasets-br/state-codes":"br-state-codes",
+        "datasets-br/city-codes":null
+   },
+   "useBig":true, "useIDX":false, "useRename":true
+}

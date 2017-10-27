@@ -10,20 +10,8 @@ Os experts podem ainda se limitar à análise final dos dados (ex. estatísticos
 
 A instalação local pode ser interessante para gerar e conferir dados que serão depois publicados no *git*, na pasta da respectiva campanha.
 
-O primeiro passo para instalar (local ou remotamente) é seguir a [instalação básica com configuração](https://github.com/datasets-br/sql-unifier#configurating), com o seguinte `conf.json`:
+O primeiro passo para instalar (local ou remotamente) é seguir a [instalação básica com configuração](https://github.com/datasets-br/sql-unifier#configurating), com o  **[`conf.json` do tutorial](../data/tutorial/conf.json)**.
 
-```json
-{
-   "db-connection": "postgresql://postgres:postgres@localhost:5432/obsjats",
-   "github.com":{
-        "datasets/country-codes":null,
-        "datasets/world-cities":null,
-        "datasets-br/state-codes":"br-state-codes",
-        "datasets-br/city-codes":null
-   },
-   "useBig":true, "useIDX":false, "useRename":true
-}
-```
 ## Instalação dos datasets da campanha
 
 Os datasets de uso geral ficam no SQL SCHEMA `dataset`, e os datasets específicos (sem reuso) de cada campanha, ficam no respectivo dataset. No exemplo do tutorial o código da campanha é `c05`, de modo que esse fica sendo também o SCHEMA. Deve-se proceder manualmente a inicialização `CREATE SCHEMA c05` com o `psql`.
@@ -52,7 +40,7 @@ Outras opções de pesquisa e inclusão de JATS são válidas. Como, todavia, o 
 No [tutorial do curador](tutorial-curador.md) é melhor indicado o processo de busca, aqui podemos suporte que a lista dos artigos já foi obtida.
 
 ### Arquivo Flink
-O exemplo to tutorial do curador é o arquivo [pubMed_resultMax-Zika-2017-10.csv](../data/tutorial/pubMed_resultMax-Zika-2017-10.csv).  Pode-se utilizar a ferramenta `csvcut` do *CSVkit* para analisar e cortar, gereando uma versão bem mais reduzida (de ~1M para ~ 50K) do arquivo.
+O exemplo to tutorial do curador é o arquivo [pubMed_resultMax-Zika-2017-10.csv](../data/tutorial/original/pubMed_resultMax-Zika-2017-10.csv).  Pode-se utilizar a ferramenta `csvcut` do *CSVkit* para analisar e cortar, gereando uma versão bem mais reduzida (de ~1M para ~ 50K) do arquivo.
 
 ```
 wc -l pubMed_resultMax-Zika-2017-10.csv
@@ -78,7 +66,7 @@ Conforme o tipo de análise, de qualquer forma, a tabela inicial pode ser intere
 
 ```sh
 csvsql --db "postgresql://postgres:postgres@localhost:5432/trydatasets" \
-   --insert --db-schema c05 pubMed_resultMax-Zika-2017-10.csv
+   --insert --db-schema c05 data/tutorial/original/pubMed_resultMax-Zika-2017-10.csv
 ```
 
 ```sql
@@ -97,9 +85,9 @@ year |  n
 2016 | 1641
 2017 | 1626
 
-Ver tabela completa em [c05_res1_01-BySql.csv](../data/tutorial/c05_res1_01-BySql.csv).
+Ver tabela completa em [c05_res01_1-BySql.csv](../data/tutorial/c05_res01_1-BySql.csv).
 
-Outra análise solicitada foi o refinamento da pesquisa, para suspeitos de falto-positivo quanto ao tema Zika-virus. O resultado da query abaixo está em [c05_res1_02-BySql.csv](../data/tutorial/c05_res1_02-BySql.csv).
+Outra análise solicitada foi o refinamento da pesquisa, para suspeitos de falto-positivo quanto ao tema Zika-virus. O resultado da query abaixo está em [c05_res01_2-BySql.csv](../data/tutorial/c05_res01_2-BySql.csv).
 
  ```sql
  SELECT uid, 'forest' as theme, pub_year, summary  
@@ -112,3 +100,65 @@ Outra análise solicitada foi o refinamento da pesquisa, para suspeitos de falto
  ORDER BY 3,1;
 ```
 Os resultados podem ser exportados por `COPY (SELECT ...) TO '/tmp/arquivo.csv' CSV HEADER`.
+
+## Analisando perfil ISSNs
+
+A ferramenta *getArtType-byPMC*  cria, a partir da listagem dos PMIDs, uma tabela PMID-ISSN-Tipo-data, para termos, antes de se restringir ao JATS, um perfil da distribuição do universo de artigos entre as diferentes revitas. Como se baseia no uso de API pode ser demorado (da ordem de 10 minutos o milhar).
+
+```sh
+php src/tools/getArtType-byPMC.php < data/tutorial/original/pubMed_resultMax-Zika-2017-10.csv \
+  > data/tutorial/c05_res02_1-getIssn.csv
+
+csvsql --db "postgresql://postgres:postgres@localhost:5432/trydatasets" \
+       --insert --db-schema c05  data/tutorial/c05_res02_1-getIssn.csv  
+```
+Os valores obtidos podem ser conferidos com os originais (checagem de ano por exemplo) e os ISSNs transformadors em ISSN-Ls para normalização.
+
+Conferindo no SQL
+
+```sql
+-- lista de casos inconsistentes por ano:
+SELECT r.*, z.pub_year
+FROM c05."pubMed_resultMax-Zika-2017-10" z INNER JOIN c05."c05_res02_1-getIssn" r
+     ON z.uid=r.pmcid WHERE substring(pubdate::text,1,4)!=z.pub_year::text
+;
+
+-- lista de quantidade por tipo
+SELECT  pubtype, count(*) as n FROM c05."c05_res02_1-getIssn" group by 1 order by 2 desc;
+
+-- lista pubtype não-esperado
+SELECT r.*, z.summary
+FROM c05."pubMed_resultMax-Zika-2017-10" z INNER JOIN c05."c05_res02_1-getIssn" r
+  ON z.uid=r.pmcid
+WHERE r.pubtype NOT IN (
+  'Journal Article', 'Historical Article', 'Evaluation Studies',
+  'Clinical Trial', 'Review'
+);
+```
+Tabelas de resultados  sequência das consultas:
+
+pmcid   |   issn    |     pubtype     |  pubdate   | pub_year
+----------|-----------|-----------------|------------|----------
+27795432 | 0022-538X | Journal Article | 2016-12-16 |     2017
+28119857 | 2235-2988 | Journal Article | 2017-01-09 |     2016
+28269838 | 1942-597X | Journal Article | 2017-02-10 |     2016
+28269870 | 1942-597X | Journal Article | 2017-02-10 |     2016
+28417097 | 2332-8940 | Comment         | 2016-08-05 |     2017
+
+pubtype       |  n   
+--------------------|------
+Journal Article    | 2743
+Letter             |  272
+Editorial          |  149
+News               |   92
+Comment            |   85
+Evaluation Studies |   22
+Historical Article |   17
+Published Erratum  |   13
+              |    6
+Interview          |    4
+Biography          |    2
+Congresses         |    2
+Clinical Trial     |    2
+Review             |    2
+Practice Guideline |    1

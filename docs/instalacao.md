@@ -71,14 +71,14 @@ cd ..
 cd observatorio-jats/
 ```
 O último comando `psql` apenas faz testes de certificação, não precisa se preocupar em entender o que mostram, exceto se forem avisos de falha.
-
+<!--
 ## Dependência com dados externos
 
 Apesar de não ser obrigatório, é interessante ir obtendo algum recheio para testes, e para lembrar como proceder com a ampla fonte de datasets externos.  As tabelas `tmp*` de `step01_2-csv2foreign_tables.sql` são drivers de leitura de arquivos CSV padronizados.
 
 Ver script [*step01_3-foreign_tables*](../src/step01_3-foreign_tables.sh). Estando na raiz do projeto, rodar `sh src/step01_3-foreign_tables.sh`. Todas as cargas serão feitas no `/tmp` de modo que é necessário fazer seu uso logo em seguida.
-
-<!--
+-->
+<!--OLD
 1. `cd /tmp`
 2. `wget ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/PMC-ids.csv.gz`
 3. `gunzip PMC-ids.csv.gz`  (prepara `/tmp/PMC-ids.csv` de ~400Mb)
@@ -96,5 +96,5 @@ psql postgresql://postgres:postgres@localhost:5432/obsjats < src/step01_1-lib.sq
 psql postgresql://postgres:postgres@localhost:5432/obsjats < src/step02-struct.sql
 psql postgresql://postgres:postgres@localhost:5432/obsjats < src/step01_2-csv2foreign_tables.sql
 psql postgresql://postgres:postgres@localhost:5432/obsjats < src/step03-kxbuild.sql
-psql postgresql://postgres:postgres@localhost:5432/obsjats < src/step05-getkx.sql
+# revendo psql postgresql://postgres:postgres@localhost:5432/obsjats < src/step05-getkx.sql
 ```

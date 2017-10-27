@@ -1,6 +1,6 @@
 # Campanhas e seus relatórios
 
-Cada *campanha observacional* deve apresentar minimante um README de apresentação, da curadoria sobre o seu alvo, e uma pasta contendo pelo menos um relatório, com a rescrição dos resultados da campanha.
+Cada *campanha observacional* deve apresentar minimante um README de apresentação, da curadoria sobre o seu alvo, e uma pasta contendo pelo menos um relatório, com a descrição dos resultados da campanha.
 
 Os identificadores (IDs) de campanha são fixados na planilha [`campanha.csv`](../data/campanha.csv).
 
