@@ -27,6 +27,8 @@ Na presente campanha elegeu-se o tema Zika por ser um dos temas de maior relevâ
 
 Não existem trabalhos que comprovem causa-efeito do grau de abertura de um acervo de conhecimento científico, justamente porque não existem métricas objetivas para esse "grau de abertura". O alvo da campanha é portanto o cálculo de grau de abertura deste acervo JATS temático, tanto para aferição nos artigos individuais como nos artigos em conjunto.
 
+Quanto à disponibilidade e avaliação das licenças livres em artigos formatados em JATS, um importante estudo foi realizado em 2013, [*"Inconsistent XML as a Barrier to Reuse of Open Access Content"*](https://www.ncbi.nlm.nih.gov/books/NBK159964/), com subprodutos e ferramentas mantidos até hoje na Wikipedia, tendo sua metodologia e sucesso motivado também a presente campanha. 
+
 ### OpenCoherence dos artigos
 
 Artigos científicos indexados em bases de dados abertas, como PubMed Central e SciELO, têm acesso gratuito e garantido por décadas. Esses bancos de dados são considerados repositórios de acesso aberto, nos quais o ato de registro assume uma licença aberta.
@@ -47,11 +49,11 @@ Aparentemente essa aceleração garantiu a publicação de conteúdos com licen�
 
 ## METODOLOGIA
 
-O levantamento sistemático requer garantia de .. e .. precisão e completeza (fig).. 
+O levantamento sistemático requer garantia de .. e .. precisão e completeza (fig)..
 Resumindo num pass-a-passo
 
 1. Preparo dos critérios e contexto histórico: o termo *Zika virus* se tornou um "padrão *de facto*" para a rotulação do tema, o que permite o uso eficiente de por palavra-chave. Em termos históricos sabe-se que o Zika não era conhecido antes da epidemia deflagrada em 2016, e que sua descoberta não pode ter sido anterior à década de 2000.
- 
+
 2. Levantamento do acervo de artigos sobre o tema: busca nas principais fontes de indexação de artigos científicos.
 
 3. Normalização dos identificadores dos artigos (por DOI ou PMCID).
@@ -72,10 +74,10 @@ que resultou na [listagem `pmc_result-zikaFull-2017-08.csv`](https://github.com/
 ### Hiopóteses sobre os artigos
 
 * Critério de exclusão para confirmar que o artigo versa sobre Zika: abstract ou palavras-chave fixadas pelo autor devem conter termos-chave.
- 
+
 * Critério para confirmação: média de referências por artigo que citam demais artigos do "grupo Zika".
 
-* Efeitos da amostragem: ao reduzir o universo aos artigos OpenAccess, não haveria apenas uma redução no tamanho da amostra, mas também efeitos sobre a distribuição do assunto. Um dos efeitos relavantes e mensuráveis seria a diversidade.  Usando os índices de Pielou para equitativodade e de Simpsom para dominância, pode-se caracterizar com precisão o comportamento médio de amostras aleatórias, e o efeito do filtro OpenAccess. 
+* Efeitos da amostragem: ao reduzir o universo aos artigos OpenAccess, não haveria apenas uma redução no tamanho da amostra, mas também efeitos sobre a distribuição do assunto. Um dos efeitos relavantes e mensuráveis seria a diversidade.  Usando os índices de Pielou para equitativodade e de Simpsom para dominância, pode-se caracterizar com precisão o comportamento médio de amostras aleatórias, e o efeito do filtro OpenAccess.
 
 
 ### Critérios do acervo JATS

@@ -33,7 +33,7 @@ Há naturalmente um funil de busca com criteriosa seleção, que envolve o traba
 1. Formação e homologação da curadoria (aprovação de alvo e dos compromissos da equipe);
 2. Planejamento da campanha observacional, e alinhamentos com a equipe de experts (aprovação de calendários e responsabilidades);
 3. Experimentos-piloto e provas de conceito;
-4. Realização da campanha: fica regisrada como relatório de apresentação (exemplos: [c01-consistencia](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c01-consistencia/README.md), [c05-openCoherence-zika](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/README.md)) e relatórios de resultados. 
+4. Realização da campanha: fica regisrada como relatório de apresentação (exemplos: [c01-consistencia](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c01-consistencia/README.md), [c05-openCoherence-zika](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/campanhas/c05-openCoherence-zika/README.md)) e relatórios de resultados.
 5. Revisão final;
 6. Revisão e divulgação dos relatórios.
 
@@ -59,4 +59,3 @@ Os resultados das campanhas observacionais ficam registrados em relatórios. Exe
 * **OKBr**: Open Knowledge do Brasil, através do [@ppkrauss](http://github.com/ppkrauss)<br/>http://ok.org.br <br>https://discuss.ok.org.br/5844
 
 * **UnB**: através dos professores [Jorge H. C. Fernandes](http://www.cic.unb.br/~jhcf/) e [Ricardo B. Sampaio](http://brasilia.academia.edu/RicardoBarrosSampaio).<br/>http://www.unb.br
-

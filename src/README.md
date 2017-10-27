@@ -3,10 +3,9 @@ Scripts e demais fontes do projeto.
 
 * Fontes de instalação: seguir a sequência _step01_ depois _step02_, etc. `step*.sql` são scripts de instalação PosgreSQL (rodar com `psql  step.sh`), `step*.sh` são shell (rodar com `sh step.sh`).
 
-* Ferramentas: ver [tools](tools)
+* Ferramentas deste projeto: ver pasta [tools](tools).<br/>Para documentação  ver [docs](../docs), principalmente [docs/instalacao](../docs/instalacao.md).
 
-Para documentação  ver [docs](../docs), principalmente [docs/instalacao](../docs/instalacao.md).
-
+* Ferramentas externas: [SQL-datasets Unifier](https://github.com/datasets-br/sql-unifier) e [CSVkit](http://csvkit.readthedocs.io).
 
 ## Arquitetura
 
