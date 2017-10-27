@@ -125,7 +125,8 @@ Conferindo no SQL
 -- lista de casos inconsistentes por ano:
 SELECT r.*, z.pub_year
 FROM c05."pubMed_resultMax-Zika-2017-10" z INNER JOIN c05."c05_res02_1-getIssn" r
-     ON z.uid=r.pmcid WHERE substring(pubdate::text,1,4)!=z.pub_year::text
+     ON z.uid=r.pmcid
+WHERE substring(pubdate::text,1,4)!=z.pub_year::text
 ;
 
 -- lista de quantidade por tipo
@@ -139,6 +140,23 @@ WHERE r.pubtype NOT IN (
   'Journal Article', 'Historical Article', 'Evaluation Studies',
   'Clinical Trial', 'Review'
 );
+
+-- drop view c05.vw_pubMed_resultMaxZika_2017_valids ;
+CREATE VIEW c05.vw_pubMed_resultMaxZika_2017_valids AS
+ SELECT r.*, issn.n2c(issn) as issnl
+ FROM c05."pubMed_resultMax-Zika-2017-10" z INNER JOIN c05."c05_res02_1-getIssn" r
+     ON z.uid=r.pmcid
+ WHERE substring(pubdate::text,1,4)=z.pub_year::text
+     AND issn is not Null AND issn.n2c(issn) IS NOT NULL
+;
+
+SELECT count(*) as n_original FROM  c05."pubMed_resultMax-Zika-2017-10";
+SELECT count(*) as n_valids   FROM  c05.vw_pubMed_resultMaxZika_2017_valids;
+SELECT issn.cast(issnl) as "ISSN-L", count(*) as n_arts
+ FROM c05.vw_pubMed_resultMaxZika_2017_valids
+ GROUP BY 1
+ ORDER BY 2 DESC
+;
 ```
 Tabelas de resultados  sequência das consultas:
 
@@ -169,3 +187,20 @@ Review             |    2
 Practice Guideline |    1
 
 Lista dos pubtypes não-esperados em [c05_res02_2.csv](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/data/tutorial/c05_res02_2.csv).
+
+`n_original=3412;  n_valids=3382; n_original/n_valids=99,1%`
+
+ISSN-L   | n_arts
+-----------|--------
+1935-2727 |    107
+1080-6040 |     91
+0959-8138 |     80
+0149-2195 |     72
+2045-2322 |     63
+0140-6736 |     61
+1473-3099 |     54
+1025-496X |     49
+1932-6203 |     46
+0028-4793 |     43
+0002-9637 |     38
+0166-3542 |     35
