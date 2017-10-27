@@ -117,7 +117,7 @@ csvsql --db "postgresql://postgres:postgres@localhost:5432/obsjats" \
        --insert --db-schema c05  data/tutorial/c05_res02_1-getIssn.csv  
 ```
 
-A nova tabela foi copiada em [c05_res02_1-getIssn.csv](../../data/tutorial/c05_res02_1-getIssn.csv). Os valores obtidos podem ser conferidos com os originais (checagem de ano por exemplo) e os ISSNs transformadors em ISSN-Ls para normalização.
+A nova tabela foi copiada em [c05_res02_1-getIssn.csv](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/data/tutorial/c05_res02_1-getIssn.csv). Os valores obtidos podem ser conferidos com os originais (checagem de ano por exemplo) e os ISSNs transformadors em ISSN-Ls para normalização.
 
 Conferindo no SQL
 
@@ -168,4 +168,4 @@ Clinical Trial     |    2
 Review             |    2
 Practice Guideline |    1
 
-Lista dos pubtypes não-esperados em [c05_res02_2.csv](../../data/tutorial/c05_res02_2.csv).
+Lista dos pubtypes não-esperados em [c05_res02_2.csv](https://github.com/UnB-CIDACS/observatorio-jats/blob/master/data/tutorial/c05_res02_2.csv).
