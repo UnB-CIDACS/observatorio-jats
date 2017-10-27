@@ -2,9 +2,11 @@
 
 &nbsp; ![](assets/experts.png)
 
-Na equipe das campanhas são necessários dois atores, o curador e o expert. Este tutorial tem como público-alvo os experts: requer conhecimentos mínimos no uso do terminal Linux e da linguagem SQL. É um complemento do [tutorial do curador](tutorial-curador.md) pois estaremos abordando os mesmos exemplos.
+Na equipe das campanhas são necessários dois atores, o curador e o expert. Este tutorial tem como público-alvo os experts: pessoas que irão preparar os dados (fazendo uso de conhecimentos mínimos em terminal Linux  linguagem SQL) ou realizar análise estatística sobre eles.
 
-Os experts podem ainda se limitar à análise final dos dados (ex. estatísticos), ou apenas dar suporte para a instalação. As partes deste tutorial que não couberem a sua expertise podem ser saltadas.
+O [tutorial do curador](tutorial-curador.md) estará abordando a mesma sequência de exemplos, de modo que é um complemento ao  presente tutorial.
+
+....dar suporte para a instalação. As partes deste tutorial que não couberem a sua expertise podem ser saltadas.
 
 ## Instalação geral e dos dasets externos
 

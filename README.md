@@ -50,7 +50,7 @@ Os resultados das campanhas observacionais ficam registrados em relatórios. Exe
 * [Instruçoes para instalação](docs/instalacao.md)
 * [Aquitetura e ferramentas](src/README.md).
 * ...
-
+* [OpenCon2017 subsidios oficina](https://docs.google.com/spreadsheets/d/1OYYeFqDUpAo8rgM2zirNGB_i_5JzNkOEkWr27cE0ado/edit#gid=0).
 
 ## Organizações que apoiam este projeto
 
