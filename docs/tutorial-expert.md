@@ -29,7 +29,7 @@ Quando existe apenas o `minhaTabela.csv`, sem uma descrição formal, pode-se ac
 O *local-csv* é realizado via *csvkit*. Por exemplo a inclusão do *minhaTabela* equivale a realizar
 
 ```sh
-csvsql --db "postgresql://postgres:postgres@localhost:5432/trydatasets" --insert --db-schema c05 minhatabela.csv
+csvsql --db "postgresql://postgres:postgres@localhost:5432/obsjats" --insert --db-schema c05 minhatabela.csv
 ```
 A vantagem aqui é que podemos indicar o schema correto, que no caso foi o `c05`.
 
@@ -65,7 +65,11 @@ ls -lh pubMed_resultMax-Zika-2017-10*
 Conforme o tipo de análise, de qualquer forma, a tabela inicial pode ser interessante para listar perfil dos artigos (ex. PubDate Year), o que precisa ser conferido com a curadoria. Para a base de dados convém renomear o *header* (ex. via `nano`)  para rótulos mais simples, por exemplo `uid,year`, o que permite enfim incluir como tabela do esquema `c05` e obter um primeiro resultado:
 
 ```sh
-csvsql --db "postgresql://postgres:postgres@localhost:5432/trydatasets" \
+psql "postgresql://postgres:postgres@localhost:5432/obsjats"
+CREATE SCHEMA c05;
+\q
+
+csvsql --db "postgresql://postgres:postgres@localhost:5432/obsjats" \
    --insert --db-schema c05 data/tutorial/original/pubMed_resultMax-Zika-2017-10.csv
 ```
 
@@ -109,10 +113,11 @@ A ferramenta *getArtType-byPMC*  cria, a partir da listagem dos PMIDs, uma tabel
 php src/tools/getArtType-byPMC.php < data/tutorial/original/pubMed_resultMax-Zika-2017-10.csv \
   > data/tutorial/c05_res02_1-getIssn.csv
 
-csvsql --db "postgresql://postgres:postgres@localhost:5432/trydatasets" \
+csvsql --db "postgresql://postgres:postgres@localhost:5432/obsjats" \
        --insert --db-schema c05  data/tutorial/c05_res02_1-getIssn.csv  
 ```
-Os valores obtidos podem ser conferidos com os originais (checagem de ano por exemplo) e os ISSNs transformadors em ISSN-Ls para normalização.
+
+A nova tabela foi copiada em [c05_res02_1-getIssn.csv](../../data/tutorial/c05_res02_1-getIssn.csv). Os valores obtidos podem ser conferidos com os originais (checagem de ano por exemplo) e os ISSNs transformadors em ISSN-Ls para normalização.
 
 Conferindo no SQL
 
@@ -155,10 +160,12 @@ Comment            |   85
 Evaluation Studies |   22
 Historical Article |   17
 Published Erratum  |   13
-              |    6
+(NULL)|    6
 Interview          |    4
 Biography          |    2
 Congresses         |    2
 Clinical Trial     |    2
 Review             |    2
 Practice Guideline |    1
+
+Lista dos pubtypes não-esperados em [c05_res02_2.csv](../../data/tutorial/c05_res02_2.csv).
